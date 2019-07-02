@@ -3,13 +3,19 @@ package com.topstrejiok.changemanager.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.adapter.NameAdapter;
+import com.topstrejiok.changemanager.fragment.ChangeFragment;
+import com.topstrejiok.changemanager.fragment.GroupFragment;
+import com.topstrejiok.changemanager.fragment.OrderFragment;
 
 import java.util.ArrayList;
 
@@ -18,6 +24,13 @@ public class SessionActivity extends AppCompatActivity {
     private ArrayList<String> names;
     private NameAdapter nameAdapter;
     private BottomNavigationView navigationView;
+    private FrameLayout fragmentContainer;
+
+    final Fragment fragmentOrder = new OrderFragment();
+    final Fragment fragmentGroup = new GroupFragment();
+    final Fragment fragmentChange = new ChangeFragment();
+    final FragmentManager fm = getSupportFragmentManager();
+    Fragment active = fragmentOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +91,13 @@ public class SessionActivity extends AppCompatActivity {
 
     private void init() {
         navigationView = findViewById(R.id.bottomnavbar);
+        fragmentContainer = findViewById(R.id.fragmentcontainer);
+        fm.beginTransaction().add(R.id.fragmentcontainer, fragmentChange, "3")
+                .hide(fragmentChange).commit();
+        fm.beginTransaction().add(R.id.fragmentcontainer, fragmentGroup, "2")
+                .hide(fragmentGroup).commit();
+        fm.beginTransaction().add(R.id.fragmentcontainer, fragmentOrder, "1")
+                .commit();
         navigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -85,15 +105,21 @@ public class SessionActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()){
                             case R.id.action_orders:
                                 Log.d("Kek", "1");
-                                break;
+                                fm.beginTransaction().hide(active).show(fragmentOrder).commit();
+                                active = fragmentOrder;
+                                return true;
                             case R.id.action_group:
+                                fm.beginTransaction().hide(active).show(fragmentGroup).commit();
+                                active = fragmentGroup;
                                 Log.d("Kek", "2");
-                                break;
+                                return true;
                             case R.id.action_money:
+                                fm.beginTransaction().hide(active).show(fragmentChange).commit();
+                                active = fragmentChange;
                                 Log.d("Kek", "3");
-                                break;
+                                return true;
                         }
-                        return true;
+                        return false;
                     }
                 });
     }
