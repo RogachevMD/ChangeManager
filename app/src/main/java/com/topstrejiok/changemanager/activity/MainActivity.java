@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("kek");
+                builder.setTitle("Add Session");
                 final View view = getLayoutInflater().inflate(R.layout.alert_item_session, null);
 
                 builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         data.add(new SessionListItem("assa3", System.currentTimeMillis()));
         data.add(new SessionListItem("assa4", System.currentTimeMillis()));
         data.add(new SessionListItem("assa5", System.currentTimeMillis()));
-        sessionAdapter = new SessionAdapter(data, this);
+        sessionAdapter = new SessionAdapter(this, data);
         SessionRecyclerView.setAdapter(sessionAdapter);
     }
 }
