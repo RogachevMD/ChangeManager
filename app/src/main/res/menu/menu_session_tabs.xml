@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_orders"
+        android:enabled="true"
+        android:icon="@drawable/ic_shopping_cart"
+        android:title="@string/text_orders"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_group"
+        android:enabled="true"
+        android:icon="@drawable/ic_group"
+        android:title="@string/text_group"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_money"
+        android:enabled="true"
+        android:icon="@drawable/ic_money"
+        android:title="@string/text_change"
+        app:showAsAction="always" />
+
+</menu>

@@ -10,7 +10,23 @@
         android:id="@+id/names"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:elevation="4dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomnavbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/colorButtonNormal"
+        app:itemHorizontalTranslationEnabled="true"
+        app:itemIconTint="@color/se_menu_tabs"
+        app:itemTextColor="@color/se_menu_tabs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_session_tabs" />
+
 </android.support.constraint.ConstraintLayout>

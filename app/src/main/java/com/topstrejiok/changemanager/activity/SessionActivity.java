@@ -1,16 +1,12 @@
 package com.topstrejiok.changemanager.activity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.adapter.NameAdapter;
@@ -21,15 +17,18 @@ public class SessionActivity extends AppCompatActivity {
     private RecyclerView nameList;
     private ArrayList<String> names;
     private NameAdapter nameAdapter;
+    private BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
-        initRecyclerView();
+        init();
+        //initRecyclerView();
     }
 
-    @Override
+
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_list, menu);
@@ -75,5 +74,27 @@ public class SessionActivity extends AppCompatActivity {
         names.add("тоже лох");
         nameAdapter = new NameAdapter(this, names);
         nameList.setAdapter(nameAdapter);
+    }*/
+
+    private void init() {
+        navigationView = findViewById(R.id.bottomnavbar);
+        navigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.action_orders:
+                                Log.d("Kek", "1");
+                                break;
+                            case R.id.action_group:
+                                Log.d("Kek", "2");
+                                break;
+                            case R.id.action_money:
+                                Log.d("Kek", "3");
+                                break;
+                        }
+                        return true;
+                    }
+                });
     }
 }
