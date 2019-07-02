@@ -1,4 +1,4 @@
-package com.topstrejiok.changemanager;
+package com.topstrejiok.changemanager.activity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.topstrejiok.changemanager.Libs.Group;
 import com.topstrejiok.changemanager.Libs.Person;
+import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.adapter.SessionAdapter;
 import com.topstrejiok.changemanager.model.SessionListItem;
 
@@ -25,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton addSessionButton;
 
     private ArrayList<SessionListItem> data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Sessions");
         initRecyclerView();
 
         Group.People.add(new Person(1, "oleg", 450, 700));
@@ -40,21 +43,21 @@ public class MainActivity extends AppCompatActivity {
         Init();
     }
 
-    private void Init()
-    {
+    private void Init() {
         addSessionButton = findViewById(R.id.AddSession);
         addSessionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("kek");
-                final View view = getLayoutInflater().inflate(R.layout.alert_item_session,null);
+                final View view = getLayoutInflater().inflate(R.layout.alert_item_session, null);
 
                 builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        data.add(  new SessionListItem(((TextView)view.findViewById(R.id.AlertName)).getText().toString() ,System.currentTimeMillis()) );
+                        data.add(new SessionListItem(((TextView) view.findViewById(R.id.AlertName)).getText().toString(),
+                                System.currentTimeMillis()));
                     }
                 });
                 builder.setView(view);
@@ -67,12 +70,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         SessionRecyclerView = findViewById(R.id.SessionView);
         SessionRecyclerView.setHasFixedSize(true);
         SessionRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         data = new ArrayList<>();
-        data.add(new SessionListItem("ASSA", System.currentTimeMillis()));
+        data.add(new SessionListItem("assa1", System.currentTimeMillis()));
+        data.add(new SessionListItem("assa2", System.currentTimeMillis()));
+        data.add(new SessionListItem("assa3", System.currentTimeMillis()));
+        data.add(new SessionListItem("assa4", System.currentTimeMillis()));
+        data.add(new SessionListItem("assa5", System.currentTimeMillis()));
         sessionAdapter = new SessionAdapter(data, this);
         SessionRecyclerView.setAdapter(sessionAdapter);
     }
