@@ -15,11 +15,16 @@ import com.topstrejiok.changemanager.fragment.ChangeFragment;
 import com.topstrejiok.changemanager.fragment.GroupFragment;
 import com.topstrejiok.changemanager.fragment.OrdersFragment;
 import com.topstrejiok.changemanager.model.NameItem;
+import com.topstrejiok.changemanager.model.OrderItem;
 
 import java.util.ArrayList;
 
 public class SessionActivity extends AppCompatActivity {
+
     public static ArrayList<NameItem> names;
+    public static ArrayList<OrderItem> items;
+
+
     final Fragment fragmentOrder = new OrdersFragment();
     final Fragment fragmentGroup = new GroupFragment();
     final Fragment fragmentChange = new ChangeFragment();
@@ -68,11 +73,12 @@ public class SessionActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+
         names = new ArrayList<>();
+        items = new ArrayList<>();
+
         for (int i = 0; i < 10; i++) {
             names.add(new NameItem("Владик" + i));
         }
-
-
     }
 }

@@ -5,12 +5,22 @@ import java.util.ArrayList;
 public class OrderItem {
     private String itemName;
     private Double itemPrice;
+    private Boolean foreach;
     private ArrayList<NameItem> Names;
 
-    public OrderItem(String itemName, Double price, ArrayList<NameItem> names) {
+    public OrderItem(String itemName, Double itemPrice, Boolean foreach, ArrayList<NameItem> names) {
         this.itemName = itemName;
-        this.itemPrice = price;
+        this.itemPrice = itemPrice;
+        this.foreach = foreach;
         Names = names;
+    }
+
+    public Boolean getForeach() {
+        return foreach;
+    }
+
+    public void setForeach(Boolean foreach) {
+        this.foreach = foreach;
     }
 
     public String getItemName() {
@@ -21,11 +31,11 @@ public class OrderItem {
         this.itemName = itemName;
     }
 
-    public Double getPrice() {
+    public Double getItemPrice() {
         return itemPrice;
     }
 
-    public void setPrice(Double price) {
+    public void setItemPrice(Double price) {
         this.itemPrice = price;
     }
 

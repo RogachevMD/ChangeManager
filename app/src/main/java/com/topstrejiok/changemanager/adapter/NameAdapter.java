@@ -102,7 +102,7 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
 
         public NameViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
+            name = itemView.findViewById(R.id.itemName);
             delete = itemView.findViewById(R.id.delete);
             edit = itemView.findViewById(R.id.edit);
         }
