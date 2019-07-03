@@ -13,13 +13,13 @@ import android.widget.FrameLayout;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.fragment.ChangeFragment;
 import com.topstrejiok.changemanager.fragment.GroupFragment;
-import com.topstrejiok.changemanager.fragment.OrderFragment;
+import com.topstrejiok.changemanager.fragment.OrdersFragment;
 
 public class SessionActivity extends AppCompatActivity {
     private BottomNavigationView navigationView;
     private FrameLayout fragmentContainer;
 
-    final Fragment fragmentOrder = new OrderFragment();
+    final Fragment fragmentOrder = new OrdersFragment();
     final Fragment fragmentGroup = new GroupFragment();
     final Fragment fragmentChange = new ChangeFragment();
     final FragmentManager fm = getSupportFragmentManager();
