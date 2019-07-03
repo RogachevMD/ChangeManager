@@ -1,7 +1,9 @@
 package com.topstrejiok.changemanager.adapter;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -38,8 +40,8 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SessionVH sessionVH, int i) {
-        if (i % 2 == 1) {
+    public void onBindViewHolder(@NonNull SessionVH sessionVH, final int position) {
+        if (position % 2 == 1) {
             sessionVH.root.setBackgroundColor(context.getColor(R.color.colorFirst));
         } else {
             sessionVH.root.setBackgroundColor(context.getColor(R.color.colorSecond));
@@ -52,8 +54,58 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
 
             }
         });
-        sessionVH.header.setText(data.get(i).getName());
-        sessionVH.dateTime.setText(data.get(i).getDateTime());
+        sessionVH.header.setText(data.get(position).getName());
+        sessionVH.dateTime.setText(data.get(position).getDateTime());
+        sessionVH.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Are You sure?");
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        data.remove(position);
+                        dialogInterface.dismiss();
+                        notifyDataSetChanged();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+        sessionVH.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Change Name");
+                final View edt = LayoutInflater.from(context).inflate(R.layout.alert_item_session, null);
+                ((TextView) edt.findViewById(R.id.AlertName)).setText(data.get(position).getName());
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        data.get(position).setName(((TextView) edt.findViewById(R.id.AlertName))
+                                .getText().toString());
+                        notifyDataSetChanged();
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.setView(edt);
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
     }
 
     @Override

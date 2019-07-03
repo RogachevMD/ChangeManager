@@ -51,7 +51,6 @@ public class GroupFragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Add Person");
                 final View v = getLayoutInflater().inflate(R.layout.alert_item_session, null);
-
                 builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
