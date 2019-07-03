@@ -52,17 +52,26 @@ public class MainActivity extends AppCompatActivity {
                 builder.setTitle("Add Session");
                 final View view = getLayoutInflater().inflate(R.layout.alert_item_session, null);
 
-                builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                        data.add(new SessionListItem(((TextView) view.findViewById(R.id.AlertName)).getText().toString(),
-                                System.currentTimeMillis()));
+                        if (!((TextView) view.findViewById(R.id.AlertName))
+                                .getText().toString().equals("")) {
+                            data.add(new SessionListItem(((TextView) view.findViewById(R.id.AlertName))
+                                    .getText().toString(),
+                                    System.currentTimeMillis()));
+                        }
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
                     }
                 });
                 builder.setView(view);
                 AlertDialog alert = builder.create();
-
                 alert.show();
             }
         });
