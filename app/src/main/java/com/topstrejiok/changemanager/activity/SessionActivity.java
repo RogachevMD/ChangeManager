@@ -6,23 +6,16 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.topstrejiok.changemanager.R;
-import com.topstrejiok.changemanager.adapter.NameAdapter;
 import com.topstrejiok.changemanager.fragment.ChangeFragment;
 import com.topstrejiok.changemanager.fragment.GroupFragment;
 import com.topstrejiok.changemanager.fragment.OrderFragment;
 
-import java.util.ArrayList;
-
 public class SessionActivity extends AppCompatActivity {
-    private RecyclerView nameList;
-    private ArrayList<String> names;
-    private NameAdapter nameAdapter;
     private BottomNavigationView navigationView;
     private FrameLayout fragmentContainer;
 
@@ -37,7 +30,6 @@ public class SessionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
         init();
-        //initRecyclerView();
     }
 
 
@@ -74,19 +66,6 @@ public class SessionActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void initRecyclerView() {
-        nameList = findViewById(R.id.names);
-        nameList.setLayoutManager(new LinearLayoutManager(this,
-                LinearLayoutManager.HORIZONTAL, false));
-        names = new ArrayList<>();
-        names.add("олех");
-        names.add("лох");
-        names.add("максим");
-        names.add("тоже лох");
-        nameAdapter = new NameAdapter(this, names);
-        nameList.setAdapter(nameAdapter);
     }*/
 
     private void init() {
