@@ -11,14 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.topstrejiok.changemanager.R;
+import com.topstrejiok.changemanager.activity.SessionActivity;
 import com.topstrejiok.changemanager.adapter.NameAdapter;
-
-import java.util.ArrayList;
 
 
 public class GroupFragment extends Fragment {
     private RecyclerView nameList;
-    private ArrayList<String> names;
     private NameAdapter nameAdapter;
     @Nullable
     @Override
@@ -35,12 +33,7 @@ public class GroupFragment extends Fragment {
     private void initRecyclerView(){
         nameList = this.getView().findViewById(R.id.names);
         nameList.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        names = new ArrayList<>();
-        names.add("олег");
-        names.add("лох");
-        names.add("максим");
-        names.add("тоже лох");
-        nameAdapter = new NameAdapter(this.getContext(), names);
+        nameAdapter = new NameAdapter(this.getContext(), SessionActivity.names);
         nameList.setAdapter(nameAdapter);
     }
 }
