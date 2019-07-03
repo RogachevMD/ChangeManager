@@ -13,14 +13,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.topstrejiok.changemanager.R;
+import com.topstrejiok.changemanager.model.NameItem;
 
 import java.util.ArrayList;
 
 public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder> {
     private Context context;
-    private ArrayList<String> names;
+    private ArrayList<NameItem> names;
 
-    public NameAdapter(Context context, ArrayList<String> names) {
+    public NameAdapter(Context context, ArrayList<NameItem> names) {
         this.context = context;
         this.names = names;
     }
@@ -35,7 +36,7 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NameViewHolder nameViewHolder, @SuppressLint("RecyclerView") final int position) {
-        nameViewHolder.name.setText(names.get(position));
+        nameViewHolder.name.setText(names.get(position).getName());
         nameViewHolder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,11 +66,11 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Change Name");
                 final View edt = LayoutInflater.from(context).inflate(R.layout.alert_item_session, null);
-                ((TextView) edt.findViewById(R.id.AlertName)).setText(names.get(position));
+                ((TextView) edt.findViewById(R.id.AlertName)).setText(names.get(position).getName());
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        names.set(position, ((TextView) edt.findViewById(R.id.AlertName))
+                        names.get(position).setName(((TextView) edt.findViewById(R.id.AlertName))
                                 .getText().toString());
                         notifyDataSetChanged();
                         dialog.dismiss();

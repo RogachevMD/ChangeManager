@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">ChangeManager</string>
-    <string name="text_orders">Orders</string>
-    <string name="text_group">Group</string>
-    <string name="text_change">Change</string>
+    <string itemName="app_name">ChangeManager</string>
+    <string itemName="text_orders">Orders</string>
+    <string itemName="text_group">Group</string>
+    <string itemName="text_change">Change</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="fragment_order">fragment_order</string>
-    <string name="fragment_group">fragment_group</string>
-    <string name="fragment_change">fragment_change</string>
+    <string itemName="fragment_order">fragment_order</string>
+    <string itemName="fragment_group">fragment_group</string>
+    <string itemName="fragment_change">fragment_change</string>
 </resources>

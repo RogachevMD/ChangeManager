@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.activity.SessionActivity;
 import com.topstrejiok.changemanager.adapter.NameAdapter;
+import com.topstrejiok.changemanager.model.NameItem;
 
 
 public class GroupFragment extends Fragment {
@@ -56,8 +57,9 @@ public class GroupFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         if (!((TextView) v.findViewById(R.id.AlertName))
                                 .getText().toString().equals("")){
-                            SessionActivity.names.add(((TextView)v.findViewById(R.id.AlertName))
-                                    .getText().toString());
+                            SessionActivity.names.add(
+                                    new NameItem(((TextView)v.findViewById(R.id.AlertName))
+                                    .getText().toString()));
                             nameAdapter.notifyDataSetChanged();
                         }
                         dialog.dismiss();

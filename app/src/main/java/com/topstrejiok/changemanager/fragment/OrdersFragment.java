@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.activity.SessionActivity;
+import com.topstrejiok.changemanager.model.NameItem;
 
 public class OrdersFragment extends Fragment {
     private FloatingActionButton floatingActionButton;
@@ -52,9 +53,9 @@ public class OrdersFragment extends Fragment {
                         }
                     }
                 });
-                for (String S: SessionActivity.names){
+                for (NameItem ni: SessionActivity.names){
                     CheckBox cb = new CheckBox(getContext());
-                    cb.setText(S);
+                    cb.setText(ni.getName());
                     cbgroup.addView(cb);
                 }
                 builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
