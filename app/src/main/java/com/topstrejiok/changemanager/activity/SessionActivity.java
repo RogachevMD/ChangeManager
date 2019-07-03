@@ -68,9 +68,23 @@ public class SessionActivity extends AppCompatActivity {
                     }
                 });
         names = new ArrayList<>();
-        names.add("олег");
-        names.add("лох");
-        names.add("максим");
-        names.add("тоже лох");
+        names.add("Владик");
+        names.add("Олег");
+        names.add("Максим");
+        names.add("Владик1");
+        names.add("Олег1");
+        names.add("Максим1");
+        names.add("Владик2");
+        names.add("Олег2");
+        names.add("Максим3");
+        names.add("Владик4");
+        names.add("Олег4");
+        names.add("Максим4");
+        names.add("Владик5");
+        names.add("Олег5");
+        names.add("Максим5");
+        names.add("Владик6");
+        names.add("Олег6");
+        names.add("Максим6");
     }
 }
