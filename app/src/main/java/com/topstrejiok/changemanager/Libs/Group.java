@@ -14,6 +14,13 @@ public class Group {
     {
         double don = 0;
         double ord = 0;
+        Owns = new ArrayList<>();
+
+        for(Person p : People)
+        {
+            Log.i("kek", p.Name + " got " + p.GetDonated() + " and ordered on " + p.GetOrderedOn() + " balance = " + p.GetBalance() );
+        }
+
         for (Person p: People)
         {
             don +=  p.GetDonated();

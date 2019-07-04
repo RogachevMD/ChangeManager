@@ -2,6 +2,7 @@ package com.topstrejiok.changemanager.Controller;
 
 import android.util.Log;
 
+import com.topstrejiok.changemanager.Libs.Group;
 import com.topstrejiok.changemanager.Libs.Person;
 import com.topstrejiok.changemanager.model.NameItem;
 import com.topstrejiok.changemanager.model.OrderItem;
@@ -83,7 +84,7 @@ public class OrdersController {
         ArrayList<Person> people = new ArrayList<>();
         for (NameItem ni : getNameItems())
         {
-            people.add(new Person(ni.getId(),ni.getName(),0,0));
+            people.add(new Person(ni.getId(),ni.getName(),0,ni.getDonate()));
         }
 
         for (OrderItem oi : getOrderItems())
@@ -115,5 +116,11 @@ public class OrdersController {
                 }
             }
         }
+
+
+
+        Group.People = people;
+        Group.Calculate();
+        Group.OutOwns();
     }
 }

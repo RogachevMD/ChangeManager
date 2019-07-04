@@ -8,8 +8,8 @@ public class Person {
 
     public void SetDonated(double value)
     {
-        balance = donated - orderedOn;
         donated = value;
+        balance = donated - orderedOn;
     }
 
     public double GetDonated()
@@ -19,8 +19,8 @@ public class Person {
 
     public void SetOrderedOn(double value)
     {
-        balance = donated - orderedOn;
         orderedOn = value;
+        balance = donated - orderedOn;
     }
 
     public double GetOrderedOn()
