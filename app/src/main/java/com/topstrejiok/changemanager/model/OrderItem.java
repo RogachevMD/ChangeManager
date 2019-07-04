@@ -44,6 +44,6 @@ public class OrderItem {
     }
 
     public void setNames(ArrayList<NameItem> names) {
-        Names = names;
+        Names = new ArrayList<>(names);
     }
 }

@@ -131,4 +131,5 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
 
         }
     }
+
 }

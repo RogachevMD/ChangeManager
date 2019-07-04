@@ -10,19 +10,16 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.topstrejiok.changemanager.Controller.SessionController;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.fragment.ChangeFragment;
 import com.topstrejiok.changemanager.fragment.GroupFragment;
 import com.topstrejiok.changemanager.fragment.OrdersFragment;
 import com.topstrejiok.changemanager.model.NameItem;
-import com.topstrejiok.changemanager.model.OrderItem;
-
-import java.util.ArrayList;
 
 public class SessionActivity extends AppCompatActivity {
 
-    public static ArrayList<NameItem> names;
-    public static ArrayList<OrderItem> items;
+    public static SessionController sessionController = new SessionController();
 
 
     final Fragment fragmentOrder = new OrdersFragment();
@@ -73,10 +70,7 @@ public class SessionActivity extends AppCompatActivity {
                         return false;
                     }
                 });
-
-        names = new ArrayList<>();
-        items = new ArrayList<>();
-
-        for (int i = 0; i < 2; i++) names.add(new NameItem("Олег " + i));
+        sessionController.getNameItems().add(new NameItem("Пенис"));
+        sessionController.getNameItems().add(new NameItem("Детров"));
     }
 }

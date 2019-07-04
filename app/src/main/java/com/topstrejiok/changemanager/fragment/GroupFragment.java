@@ -33,14 +33,14 @@ public class GroupFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        initRecyclerView();
         init();
+        initRecyclerView();
     }
 
     private void initRecyclerView(){
         nameList = this.getView().findViewById(R.id.names);
         nameList.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        nameAdapter = new NameAdapter(this.getContext(), SessionActivity.names);
+        nameAdapter = new NameAdapter(this.getContext());
         nameList.setAdapter(nameAdapter);
     }
 
@@ -57,7 +57,7 @@ public class GroupFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         if (!((TextView) v.findViewById(R.id.AlertName))
                                 .getText().toString().equals("")){
-                            SessionActivity.names.add(
+                            SessionActivity.sessionController.getNameItems().add(
                                     new NameItem(((TextView)v.findViewById(R.id.AlertName))
                                     .getText().toString()));
                             nameAdapter.notifyDataSetChanged();

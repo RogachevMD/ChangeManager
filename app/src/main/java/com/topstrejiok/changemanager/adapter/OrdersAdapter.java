@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.topstrejiok.changemanager.R;
+import com.topstrejiok.changemanager.activity.SessionActivity;
 import com.topstrejiok.changemanager.model.NameItem;
-import com.topstrejiok.changemanager.model.OrderItem;
-
-import java.util.ArrayList;
 
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> {
 
     private Context context;
-    private ArrayList<OrderItem> data;
 
-    public OrdersAdapter(Context context, ArrayList<OrderItem> data) {
+    public OrdersAdapter(Context context) {
         this.context = context;
-        this.data = data;
     }
 
     @NonNull
@@ -40,17 +35,21 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
 
     @Override
     public void onBindViewHolder(@NonNull final OrdersVH ordersVH, int position) {
-        ordersVH.orderName.setText(data.get(ordersVH.getAdapterPosition()).getItemName());
-        ordersVH.orderPrice.setText(String.valueOf(data.get(ordersVH.getAdapterPosition()).getItemPrice()));
 
-        for (NameItem ni : data.get(ordersVH.getAdapterPosition()).getNames()) {
-            ConstraintLayout v = (ConstraintLayout) LayoutInflater.from(context)
-                    .inflate(R.layout.item_name_2, null, false);
-            TextView cb = v.findViewById(R.id.itemName);
-            ImageView iv = v.findViewById(R.id.delete);
-            cb.setText(ni.getName());
-            ordersVH.nameHolder.addView(v);
-            Log.i("KEK", ni.getName());
+        ordersVH.orderName.setText(SessionActivity.sessionController.getOrderItems()
+                .get(ordersVH.getAdapterPosition()).getItemName());
+        ordersVH.orderPrice.setText(String.valueOf(SessionActivity.sessionController.getOrderItems()
+                .get(ordersVH.getAdapterPosition()).getItemPrice()));
+
+        for (NameItem ni : SessionActivity.sessionController.getOrderItems()
+                .get(ordersVH.getAdapterPosition()).getNames()) {
+            if (ni.getChecked()) {
+                ConstraintLayout v = (ConstraintLayout) LayoutInflater.from(context)
+                        .inflate(R.layout.item_name_2, null, false);
+                TextView cb = v.findViewById(R.id.itemName);
+                cb.setText(ni.getName());
+                ordersVH.nameHolder.addView(v);
+            }
         }
 
         ordersVH.delete.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +66,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                 builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        data.remove(ordersVH.getAdapterPosition());
+                        SessionActivity.sessionController.
+                                getOrderItems().remove(ordersVH.getAdapterPosition());
                         notifyDataSetChanged();
                         dialogInterface.dismiss();
                     }
@@ -76,12 +76,11 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                 alert.show();
             }
         });
-        Log.i("KEK", data.get(ordersVH.getAdapterPosition()).getNames().size() + "");
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return SessionActivity.sessionController.getOrderItems().size();
     }
 
     static class OrdersVH extends RecyclerView.ViewHolder {

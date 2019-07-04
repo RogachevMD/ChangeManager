@@ -27,10 +27,27 @@ import com.topstrejiok.changemanager.model.OrderItem;
 import java.util.ArrayList;
 
 public class OrdersFragment extends Fragment {
+
     private FloatingActionButton floatingActionButton;
     private RecyclerView itemList;
     private OrdersAdapter ordersAdapter;
     private boolean foreach = true;
+
+    View.OnClickListener radioClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            RadioButton rb = (RadioButton) view;
+            switch (rb.getId()) {
+                case R.id.rbforeach:
+                    foreach = true;
+                    break;
+                case R.id.rbforall:
+                    foreach = false;
+                    break;
+            }
+        }
+    };
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,13 +61,18 @@ public class OrdersFragment extends Fragment {
         init();
     }
 
-    private void init(){
+    @Override
+    public void onResume() {
+        super.onResume();
+        ordersAdapter.notifyDataSetChanged();
+    }
+
+    private void init() {
         floatingActionButton = getView().findViewById(R.id.addorders);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Add Item");
+
                 final View v = getLayoutInflater().inflate(R.layout.alert_item_orders, null);
                 final LinearLayout cbgroup = v.findViewById(R.id.checkboxgroup);
                 final EditText ordername = v.findViewById(R.id.edtname);
@@ -59,47 +81,56 @@ public class OrdersFragment extends Fragment {
                 final RadioButton rbfa = v.findViewById(R.id.rbforall);
                 rbfe.setOnClickListener(radioClick);
                 rbfa.setOnClickListener(radioClick);
+
                 ((CheckBox) v.findViewById(R.id.cbselectall)).setOnCheckedChangeListener(
                         new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                        for(int i = 0; i < cbgroup.getChildCount(); i++){
-                            View v = cbgroup.getChildAt(i);
-                            if (v instanceof CheckBox){
-                                ((CheckBox)v).setChecked(b);
+                            @Override
+                            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                                for (int i = 0; i < cbgroup.getChildCount(); i++) {
+                                    View v = cbgroup.getChildAt(i);
+                                    if (v instanceof CheckBox) {
+                                        ((CheckBox) v).setChecked(b);
+                                    }
+                                }
                             }
-                        }
-                    }
-                });
-                for (NameItem ni: SessionActivity.names){
+                        });
+
+                for (NameItem ni : SessionActivity.sessionController.getNameItems()) {
                     CheckBox cb = new CheckBox(getContext());
                     cb.setText(ni.getName());
+                    cb.setChecked(ni.getChecked());
                     cbgroup.addView(cb);
                 }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Add Item");
                 builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String orderNames = "Order";
-                        Double orderPrices = 0.0;
+                        OrderItem OI = new OrderItem("Order", 0.0, foreach, null);
                         ArrayList<NameItem> namess = new ArrayList<>();
-                        for(int i = 0; i < cbgroup.getChildCount(); i++){
+                        namess.addAll(SessionActivity.sessionController.getNameItems());
+                        for (int i = 0; i < cbgroup.getChildCount(); i++) {
                             View v = cbgroup.getChildAt(i);
-                            if (v instanceof CheckBox){
-                                if (((CheckBox) v).isChecked()){
-                                    namess.add(SessionActivity.names.get(i));
+                            if (v instanceof CheckBox) {
+                                if (((CheckBox) v).isChecked()) {
+                                    namess.get(i).setChecked(true);
+                                } else {
+                                    namess.get(i).setChecked(false);
                                 }
                             }
                         }
-                        if (!ordername.getText().toString().equals("")){
-                            orderNames = ordername.getText().toString();
+                        OI.setNames(namess);
+                        if (!ordername.getText().toString().equals("")) {
+                            OI.setItemName(ordername.getText().toString());
                         }
-                        if (!orderprice.getText().toString().equals("")){
-                            orderPrices = Double.valueOf(orderprice.getText().toString());
+                        if (!orderprice.getText().toString().equals("")) {
+                            OI.setItemPrice(Double.valueOf(orderprice.getText().toString()));
                         }
-                        OrderItem item = new OrderItem(orderNames,orderPrices,foreach,namess);
-                        SessionActivity.items.add(item);
-                        dialog.dismiss();
+                        SessionActivity.sessionController.getOrderItems().add(OI);
                         ordersAdapter.notifyDataSetChanged();
+                        dialog.dismiss();
+                        SessionActivity.sessionController.PrintOrders();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -115,25 +146,10 @@ public class OrdersFragment extends Fragment {
         });
     }
 
-    private void initRecyclerView(){
+    private void initRecyclerView() {
         itemList = this.getView().findViewById(R.id.itemlist);
         itemList.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        ordersAdapter = new OrdersAdapter(this.getContext(), SessionActivity.items);
+        ordersAdapter = new OrdersAdapter(this.getContext());
         itemList.setAdapter(ordersAdapter);
     }
-
-    View.OnClickListener radioClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            RadioButton rb = (RadioButton) view;
-            switch (rb.getId()){
-                case R.id.rbforeach:
-                    foreach = true;
-                    break;
-                case R.id.rbforall:
-                    foreach = false;
-                    break;
-            }
-        }
-    };
 }
