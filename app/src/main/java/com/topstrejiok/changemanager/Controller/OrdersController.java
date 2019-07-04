@@ -2,12 +2,10 @@ package com.topstrejiok.changemanager.Controller;
 
 import android.util.Log;
 
-import com.topstrejiok.changemanager.Libs.Group;
 import com.topstrejiok.changemanager.Libs.Person;
 import com.topstrejiok.changemanager.model.NameItem;
 import com.topstrejiok.changemanager.model.OrderItem;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class OrdersController {
@@ -79,12 +77,6 @@ public class OrdersController {
         }
         Log.d(LogD, S.toString());
     }
-
-    public Person FindPerson(String id)
-    {
-
-    }
-
 
     public void Calculate()
     {

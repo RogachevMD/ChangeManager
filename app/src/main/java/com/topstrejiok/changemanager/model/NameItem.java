@@ -4,15 +4,19 @@ public class NameItem {
     private String name;
     private String id;
     private Boolean checked = false;
+    private Double donate = 0.0;
 
     public NameItem(String name) {
         this.name = name;
         id = Long.toString(System.currentTimeMillis());
     }
 
-    public  void setId(String id)
-    {
-        this.id = id;
+    public Double getDonate() {
+        return donate;
+    }
+
+    public void setDonate(Double donate) {
+        this.donate = donate;
     }
 
     public Boolean getChecked() {
@@ -35,8 +39,11 @@ public class NameItem {
         return id;
     }
 
-    public NameItem GetClone()
-    {
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public NameItem GetClone() {
         NameItem ni = new NameItem(name);
         ni.setChecked(false);
         ni.setId(id);

@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.topstrejiok.changemanager.Controller.SessionController;
-import com.topstrejiok.changemanager.Libs.Group;
-import com.topstrejiok.changemanager.Libs.Person;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.adapter.SessionAdapter;
 import com.topstrejiok.changemanager.model.SessionListItem;
@@ -41,13 +39,6 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Sessions");
         Init();
         initRecyclerView();
-
-        Group.People.add(new Person(1, "oleg", 450, 700));
-        Group.People.add(new Person(2, "artem", 300, 0));
-        Group.People.add(new Person(3, "hleb", 200, 250));
-        //Group.People.Add(new Person(4, "kek", 1000, 0));
-        Group.Calculate();
-        Group.OutOwns();
     }
 
     private void Init() {
