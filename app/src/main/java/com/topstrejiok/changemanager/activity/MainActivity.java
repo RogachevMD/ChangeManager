@@ -1,6 +1,7 @@
 package com.topstrejiok.changemanager.activity;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -10,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.topstrejiok.changemanager.Controller.SessionController;
 import com.topstrejiok.changemanager.Libs.Group;
 import com.topstrejiok.changemanager.Libs.Person;
 import com.topstrejiok.changemanager.R;
@@ -20,18 +24,22 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String KEY_SESSIONS = "KEY_SESSIONS";
+
+    SharedPreferences mPrefs;
+
     private RecyclerView SessionRecyclerView;
-    private SessionAdapter sessionAdapter;
-
+    private SessionAdapter sessionAdapter ;
     private FloatingActionButton addSessionButton;
-
-    private ArrayList<SessionListItem> data;
+    private ArrayList<SessionListItem> data = new ArrayList<>();
+    public static SessionController sessionController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Sessions");
+        Init();
         initRecyclerView();
 
         Group.People.add(new Person(1, "oleg", 450, 700));
@@ -40,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
         //Group.People.Add(new Person(4, "kek", 1000, 0));
         Group.Calculate();
         Group.OutOwns();
-        Init();
     }
 
     private void Init() {
+        sessionController = loadData();
         addSessionButton = findViewById(R.id.AddSession);
         addSessionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,11 +65,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         if (!((TextView) view.findViewById(R.id.AlertName))
                                 .getText().toString().equals("")) {
-                            data.add(new SessionListItem(((TextView) view.findViewById(R.id.AlertName))
+                            sessionController.getSessionItem().add(
+                                    new SessionListItem(((TextView) view.findViewById(R.id.AlertName))
                                     .getText().toString(),
                                     System.currentTimeMillis()));
                         }
                         dialog.dismiss();
+                        saveData();
+                        sessionController = loadData();
+                        sessionAdapter.notifyDataSetChanged();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -83,13 +95,31 @@ public class MainActivity extends AppCompatActivity {
         SessionRecyclerView = findViewById(R.id.SessionView);
         SessionRecyclerView.setHasFixedSize(true);
         SessionRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        data = new ArrayList<>();
-        data.add(new SessionListItem("assa1", System.currentTimeMillis()));
-        data.add(new SessionListItem("assa2", System.currentTimeMillis()));
-        data.add(new SessionListItem("assa3", System.currentTimeMillis()));
-        data.add(new SessionListItem("assa4", System.currentTimeMillis()));
-        data.add(new SessionListItem("assa5", System.currentTimeMillis()));
-        sessionAdapter = new SessionAdapter(this, data);
+        sessionAdapter = new SessionAdapter(this, mPrefs);
         SessionRecyclerView.setAdapter(sessionAdapter);
+    }
+    //FIXME говна
+    private void saveData() {
+        mPrefs = getSharedPreferences("ASSA",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = gson.toJson(sessionController);
+        mPrefs.edit().putString(KEY_SESSIONS, json).apply();
+    }
+
+    private SessionController loadData() {
+        mPrefs = getSharedPreferences("ASSA",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPrefs.getString(KEY_SESSIONS, "");
+        if (json.equals("")) {
+            return new SessionController();
+        } else {
+            return gson.fromJson(json, new TypeToken<SessionController>(){}.getType());
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveData();
     }
 }

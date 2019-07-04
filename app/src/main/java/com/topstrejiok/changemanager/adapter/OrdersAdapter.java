@@ -37,7 +37,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
     public void onBindViewHolder(@NonNull final OrdersVH ordersVH, int position) {
 
         ordersVH.orderName.setText(SessionActivity.sessionController.getOrderItems()
-                .get(ordersVH.getAdapterPosition()).getItemName());
+                .get(ordersVH.getAdapterPosition()).getItemName() + position);
         ordersVH.orderPrice.setText(String.valueOf(SessionActivity.sessionController.getOrderItems()
                 .get(ordersVH.getAdapterPosition()).getItemPrice()));
 

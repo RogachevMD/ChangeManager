@@ -6,11 +6,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.topstrejiok.changemanager.Controller.SessionController;
+import com.topstrejiok.changemanager.Controller.OrdersController;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.fragment.ChangeFragment;
 import com.topstrejiok.changemanager.fragment.GroupFragment;
@@ -19,7 +18,7 @@ import com.topstrejiok.changemanager.model.NameItem;
 
 public class SessionActivity extends AppCompatActivity {
 
-    public static SessionController sessionController = new SessionController();
+    public static OrdersController sessionController = new OrdersController();
 
 
     final Fragment fragmentOrder = new OrdersFragment();
@@ -52,19 +51,16 @@ public class SessionActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         switch (menuItem.getItemId()) {
                             case R.id.action_orders:
-                                Log.d("Kek", "1");
                                 fm.beginTransaction().hide(active).show(fragmentOrder).commit();
                                 active = fragmentOrder;
                                 return true;
                             case R.id.action_group:
                                 fm.beginTransaction().hide(active).show(fragmentGroup).commit();
                                 active = fragmentGroup;
-                                Log.d("Kek", "2");
                                 return true;
                             case R.id.action_money:
                                 fm.beginTransaction().hide(active).show(fragmentChange).commit();
                                 active = fragmentChange;
-                                Log.d("Kek", "3");
                                 return true;
                         }
                         return false;

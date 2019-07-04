@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
@@ -14,21 +15,23 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.activity.SessionActivity;
-import com.topstrejiok.changemanager.model.SessionListItem;
 
-import java.util.ArrayList;
+import static android.content.Context.MODE_PRIVATE;
+import static com.topstrejiok.changemanager.activity.MainActivity.KEY_SESSIONS;
+import static com.topstrejiok.changemanager.activity.MainActivity.sessionController;
 
 
 public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionVH> {
 
-    private ArrayList<SessionListItem> data;
     private Context context;
+    SharedPreferences mPrefs;
 
-    public SessionAdapter(Context context, ArrayList<SessionListItem> data) {
-        this.data = data;
+    public SessionAdapter(Context context, SharedPreferences mPrefs) {
         this.context = context;
+        this.mPrefs = mPrefs;
     }
 
     @NonNull
@@ -54,8 +57,8 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
 
             }
         });
-        sessionVH.header.setText(data.get(position).getName());
-        sessionVH.dateTime.setText(data.get(position).getDateTime());
+        sessionVH.header.setText(sessionController.getSessionItem().get(position).getName());
+        sessionVH.dateTime.setText(sessionController.getSessionItem().get(position).getDateTime());
         sessionVH.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,12 +73,13 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
                 builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        data.remove(position);
+                        sessionController.getSessionItem().remove(position);
                         dialogInterface.dismiss();
                         notifyDataSetChanged();
                     }
                 });
                 AlertDialog alert = builder.create();
+                saveData();
                 alert.show();
             }
         });
@@ -85,13 +89,14 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Change Name");
                 final View edt = LayoutInflater.from(context).inflate(R.layout.alert_item_session, null);
-                ((TextView) edt.findViewById(R.id.AlertName)).setText(data.get(position).getName());
+                ((TextView) edt.findViewById(R.id.AlertName)).setText(sessionController.getSessionItem().get(position).getName());
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        data.get(position).setName(((TextView) edt.findViewById(R.id.AlertName))
+                        sessionController.getSessionItem().get(position).setName(((TextView) edt.findViewById(R.id.AlertName))
                                 .getText().toString());
                         notifyDataSetChanged();
+                        saveData();
                         dialog.dismiss();
                     }
                 });
@@ -110,7 +115,7 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return sessionController.getSessionItem().size();
     }
 
     static class SessionVH extends RecyclerView.ViewHolder {
@@ -132,4 +137,10 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
         }
     }
 
+    private void saveData() {
+        mPrefs = context.getSharedPreferences("ASSA",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = gson.toJson(sessionController);
+        mPrefs.edit().putString(KEY_SESSIONS, json).apply();
+    }
 }
