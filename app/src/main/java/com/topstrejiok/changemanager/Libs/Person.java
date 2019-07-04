@@ -1,7 +1,7 @@
 package com.topstrejiok.changemanager.Libs;
 
 public class Person {
-    public int ID;
+    public String ID;
     public String Name;
 
     private double donated, orderedOn, balance;
@@ -38,7 +38,7 @@ public class Person {
         balance = value;
     }
 
-    public Person(int ID, String Name,double orderedOn,double donated)
+    public Person(String ID, String Name,double orderedOn,double donated)
     {
         this.ID = ID;
         this.Name = Name;

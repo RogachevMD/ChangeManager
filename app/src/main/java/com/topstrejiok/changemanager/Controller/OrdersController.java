@@ -2,9 +2,12 @@ package com.topstrejiok.changemanager.Controller;
 
 import android.util.Log;
 
+import com.topstrejiok.changemanager.Libs.Group;
+import com.topstrejiok.changemanager.Libs.Person;
 import com.topstrejiok.changemanager.model.NameItem;
 import com.topstrejiok.changemanager.model.OrderItem;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class OrdersController {
@@ -15,7 +18,16 @@ public class OrdersController {
     private ArrayList<OrderItem> orderItems = new ArrayList<>();
 
     public ArrayList<NameItem> getNameItems() {
-        return nameItems;
+        /*ArrayList<NameItem> newNameItems = new ArrayList<>();
+        for (NameItem ni:nameItems)
+        {
+            NameItem newni = ni.GetClone();
+            newNameItems.add(newni);
+        }
+        return newNameItems;
+
+
+        */return  nameItems;
     }
 
     public void setNameItems(ArrayList<NameItem> nameItems) {
@@ -66,5 +78,50 @@ public class OrdersController {
             S.append("##");
         }
         Log.d(LogD, S.toString());
+    }
+
+    public Person FindPerson(String id)
+    {
+
+    }
+
+
+    public void Calculate()
+    {
+        ArrayList<Person> people = new ArrayList<>();
+        for (NameItem ni : getNameItems())
+        {
+            people.add(new Person(ni.getId(),ni.getName(),0,0));
+        }
+
+        for (OrderItem oi : getOrderItems())
+        {
+            if (oi.getForeach())
+            {
+                for (NameItem locNi : oi.getNames())
+                {
+                    for (Person p : people)
+                    {
+                        if (p.ID == locNi.getId())
+                        {
+                            p.SetOrderedOn(p.GetOrderedOn()+oi.getItemPrice());
+                        }
+                    }
+
+                }
+            }
+            else {
+                for (NameItem locNi : oi.getNames())
+                {
+                    for (Person p : people)
+                    {
+                        if (p.ID == locNi.getId())
+                        {
+                            p.SetOrderedOn(p.GetOrderedOn()+oi.getItemPrice()/oi.getNames().size()+1);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

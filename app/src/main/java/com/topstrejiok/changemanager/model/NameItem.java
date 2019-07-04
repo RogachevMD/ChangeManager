@@ -10,6 +10,11 @@ public class NameItem {
         id = Long.toString(System.currentTimeMillis());
     }
 
+    public  void setId(String id)
+    {
+        this.id = id;
+    }
+
     public Boolean getChecked() {
         return checked;
     }
@@ -30,5 +35,11 @@ public class NameItem {
         return id;
     }
 
-
+    public NameItem GetClone()
+    {
+        NameItem ni = new NameItem(name);
+        ni.setChecked(false);
+        ni.setId(id);
+        return ni;
+    }
 }
