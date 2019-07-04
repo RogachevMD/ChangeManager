@@ -108,8 +108,18 @@ public class OrdersFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         OrderItem OI = new OrderItem("Order", 0.0, foreach, null);
+
+                        //ArrayList<NameItem> namess = new ArrayList<>();
+                        //namess.addAll(SessionActivity.sessionController.getNameItems());
+
+                      //  ArrayList<NameItem> namess = ( ArrayList<NameItem>)SessionActivity.sessionController.getNameItems().clone();
                         ArrayList<NameItem> namess = new ArrayList<>();
-                        namess.addAll(SessionActivity.sessionController.getNameItems());
+                        for (NameItem ni:SessionActivity.sessionController.getNameItems())
+                        {
+                            NameItem newni = ni.GetClone();
+                            namess.add(newni);
+                        }
+
                         for (int i = 0; i < cbgroup.getChildCount(); i++) {
                             View v = cbgroup.getChildAt(i);
                             if (v instanceof CheckBox) {
@@ -128,7 +138,8 @@ public class OrdersFragment extends Fragment {
                             OI.setItemPrice(Double.valueOf(orderprice.getText().toString()));
                         }
                         SessionActivity.sessionController.getOrderItems().add(OI);
-                        ordersAdapter.notifyDataSetChanged();
+                        ordersAdapter = new OrdersAdapter(getContext());
+                        itemList.setAdapter(ordersAdapter);
                         dialog.dismiss();
                         SessionActivity.sessionController.PrintOrders();
                     }

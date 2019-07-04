@@ -37,6 +37,7 @@ public class SessionActivity extends AppCompatActivity {
     }
 
     private void init() {
+
         navigationView = findViewById(R.id.bottomnavbar);
         fragmentContainer = findViewById(R.id.fragmentcontainer);
         fm.beginTransaction().add(fragmentContainer.getId(), fragmentChange, "3")
