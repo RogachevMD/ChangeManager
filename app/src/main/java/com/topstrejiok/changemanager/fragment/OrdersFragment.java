@@ -79,8 +79,7 @@ public class OrdersFragment extends Fragment {
                 builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        OrderItem oi;
-                        String orderNames = "";
+                        String orderNames = "Order";
                         Double orderPrices = 0.0;
                         ArrayList<NameItem> namess = new ArrayList<>();
                         for(int i = 0; i < cbgroup.getChildCount(); i++){
@@ -91,19 +90,16 @@ public class OrdersFragment extends Fragment {
                                 }
                             }
                         }
-                        if (ordername.getText().toString().equals("")){
-                            orderNames = "Order";
-                        }else {
+                        if (!ordername.getText().toString().equals("")){
                             orderNames = ordername.getText().toString();
                         }
                         if (!orderprice.getText().toString().equals("")){
                             orderPrices = Double.valueOf(orderprice.getText().toString());
-                            /*SessionActivity.items.add(null);*/
                         }
                         OrderItem item = new OrderItem(orderNames,orderPrices,foreach,namess);
                         SessionActivity.items.add(item);
-                        ordersAdapter.notifyDataSetChanged();
                         dialog.dismiss();
+                        ordersAdapter.notifyDataSetChanged();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

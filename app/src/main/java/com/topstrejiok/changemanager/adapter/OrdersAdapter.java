@@ -1,8 +1,12 @@
 package com.topstrejiok.changemanager.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,15 +39,44 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull OrdersVH ordersVH, int i) {
-        ordersVH.orderName.setText(data.get(i).getItemName());
-        ordersVH.orderPrice.setText(data.get(i).getItemPrice().toString());
-        for (NameItem ni: data.get(i).getNames()){
-            TextView cb = new TextView(context);
+    public void onBindViewHolder(@NonNull final OrdersVH ordersVH, int position) {
+        ordersVH.orderName.setText(data.get(ordersVH.getAdapterPosition()).getItemName());
+        ordersVH.orderPrice.setText(String.valueOf(data.get(ordersVH.getAdapterPosition()).getItemPrice()));
+
+        for (NameItem ni : data.get(ordersVH.getAdapterPosition()).getNames()) {
+            ConstraintLayout v = (ConstraintLayout) LayoutInflater.from(context)
+                    .inflate(R.layout.item_name_2, null, false);
+            TextView cb = v.findViewById(R.id.itemName);
+            ImageView iv = v.findViewById(R.id.delete);
             cb.setText(ni.getName());
-            ordersVH.nameHolder.addView(cb);
+            ordersVH.nameHolder.addView(v);
+            Log.i("KEK", ni.getName());
         }
 
+        ordersVH.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Are You sure?");
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        data.remove(ordersVH.getAdapterPosition());
+                        notifyDataSetChanged();
+                        dialogInterface.dismiss();
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+        Log.i("KEK", data.get(ordersVH.getAdapterPosition()).getNames().size() + "");
     }
 
     @Override

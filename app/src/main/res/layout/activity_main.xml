@@ -27,6 +27,7 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
+        app:backgroundTint="@color/colorPrimary"
         app:backgroundTintMode="src_in"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -20,7 +20,7 @@
         android:id="@+id/bottomnavbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:itemBackground="@color/colorButtonNormal"
+        app:itemBackground="@color/colorPrimary"
         app:itemHorizontalTranslationEnabled="true"
         app:itemIconTint="@color/se_menu_tabs"
         app:itemTextColor="@color/se_menu_tabs"

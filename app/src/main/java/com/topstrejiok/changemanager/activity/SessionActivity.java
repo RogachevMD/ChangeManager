@@ -77,8 +77,6 @@ public class SessionActivity extends AppCompatActivity {
         names = new ArrayList<>();
         items = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            names.add(new NameItem("Владик" + i));
-        }
+        for (int i = 0; i < 2; i++) names.add(new NameItem("Олег " + i));
     }
 }
