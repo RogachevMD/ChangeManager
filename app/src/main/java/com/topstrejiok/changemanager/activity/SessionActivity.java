@@ -18,7 +18,7 @@ import com.topstrejiok.changemanager.model.NameItem;
 
 public class SessionActivity extends AppCompatActivity {
 
-    public static OrdersController sessionController = new OrdersController();
+    public static OrdersController ordersController = new OrdersController();
 
 
     final Fragment fragmentOrder = new OrdersFragment();
@@ -67,7 +67,7 @@ public class SessionActivity extends AppCompatActivity {
                         return false;
                     }
                 });
-        sessionController.getNameItems().add(new NameItem("Пенис"));
-        sessionController.getNameItems().add(new NameItem("Детров"));
+        ordersController.getNameItems().add(new NameItem("Пенис"));
+        ordersController.getNameItems().add(new NameItem("Детров"));
     }
 }

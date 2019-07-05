@@ -40,15 +40,15 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Enter donation");
                 final View edt = LayoutInflater.from(context).inflate(R.layout.alert_item_donation, null);
-                if (SessionActivity.sessionController.getNameItems()
+                if (SessionActivity.ordersController.getNameItems()
                         .get(position).getDonate() != 0.0){
-                    ((TextView) edt.findViewById(R.id.AlertName)).setText(SessionActivity.sessionController.getNameItems()
+                    ((TextView) edt.findViewById(R.id.AlertName)).setText(SessionActivity.ordersController.getNameItems()
                             .get(position).getDonate().toString());
                 }
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SessionActivity.sessionController.getNameItems()
+                        SessionActivity.ordersController.getNameItems()
                                 .get(position).setDonate(Double.parseDouble(((EditText)edt.findViewById(R.id.AlertName))
                                 .getText().toString()));
                         ((EditText)view).setText(((EditText)edt.findViewById(R.id.AlertName))
@@ -69,7 +69,7 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
             }
         });
 
-        nameViewHolder.name.setText(SessionActivity.sessionController.getNameItems()
+        nameViewHolder.name.setText(SessionActivity.ordersController.getNameItems()
                 .get(position).getName());
         nameViewHolder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,8 +85,8 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
                 builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        SessionActivity.sessionController.removeName(SessionActivity.sessionController.getNameItems()
-                                .get(position).getName(),SessionActivity.sessionController.getNameItems()
+                        SessionActivity.ordersController.removeName(SessionActivity.ordersController.getNameItems()
+                                .get(position).getName(),SessionActivity.ordersController.getNameItems()
                                 .get(position).getId());
                         dialogInterface.dismiss();
                         notifyDataSetChanged();
@@ -102,12 +102,12 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Change Name");
                 final View edt = LayoutInflater.from(context).inflate(R.layout.alert_item_session, null);
-                ((TextView) edt.findViewById(R.id.AlertName)).setText(SessionActivity.sessionController.getNameItems()
+                ((TextView) edt.findViewById(R.id.AlertName)).setText(SessionActivity.ordersController.getNameItems()
                         .get(position).getName());
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SessionActivity.sessionController.getNameItems()
+                        SessionActivity.ordersController.getNameItems()
                                 .get(position).setName(((TextView) edt.findViewById(R.id.AlertName))
                                 .getText().toString());
                         notifyDataSetChanged();
@@ -129,7 +129,7 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
 
     @Override
     public int getItemCount() {
-        return SessionActivity.sessionController.getNameItems().size();
+        return SessionActivity.ordersController.getNameItems().size();
     }
 
     static class NameViewHolder extends RecyclerView.ViewHolder {

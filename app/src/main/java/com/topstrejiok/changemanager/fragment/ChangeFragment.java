@@ -42,7 +42,7 @@ public class ChangeFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SessionActivity.sessionController.Calculate();
+                SessionActivity.ordersController.Calculate();
                 recyclerView.setAdapter(new ChangeAdapter());
             }
         });
@@ -50,6 +50,6 @@ public class ChangeFragment extends Fragment {
 
 /*    public void Kek(View view)
     {
-        SessionActivity.sessionController.Calculate();
+        SessionActivity.ordersController.Calculate();
     }*/
 }

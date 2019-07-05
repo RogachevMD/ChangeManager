@@ -57,7 +57,7 @@ public class GroupFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         if (!((TextView) v.findViewById(R.id.AlertName))
                                 .getText().toString().equals("")){
-                            SessionActivity.sessionController.getNameItems().add(
+                            SessionActivity.ordersController.getNameItems().add(
                                     new NameItem(((TextView)v.findViewById(R.id.AlertName))
                                     .getText().toString()));
                             nameAdapter.notifyDataSetChanged();

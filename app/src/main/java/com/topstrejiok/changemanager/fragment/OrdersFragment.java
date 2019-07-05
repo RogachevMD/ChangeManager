@@ -95,7 +95,7 @@ public class OrdersFragment extends Fragment {
                             }
                         });
 
-                for (NameItem ni : SessionActivity.sessionController.getNameItems()) {
+                for (NameItem ni : SessionActivity.ordersController.getNameItems()) {
                     CheckBox cb = new CheckBox(getContext());
                     cb.setText(ni.getName());
                     cb.setChecked(ni.getChecked());
@@ -110,11 +110,11 @@ public class OrdersFragment extends Fragment {
                         OrderItem OI = new OrderItem("Order", 0.0, foreach, null);
 
                         //ArrayList<NameItem> namess = new ArrayList<>();
-                        //namess.addAll(SessionActivity.sessionController.getNameItems());
+                        //namess.addAll(SessionActivity.ordersController.getNameItems());
 
-                        //ArrayList<NameItem> namess = ( ArrayList<NameItem>)SessionActivity.sessionController.getNameItems().clone();
+                        //ArrayList<NameItem> namess = ( ArrayList<NameItem>)SessionActivity.ordersController.getNameItems().clone();
                         ArrayList<NameItem> namess = new ArrayList<>();
-                        for (NameItem ni:SessionActivity.sessionController.getNameItems())
+                        for (NameItem ni:SessionActivity.ordersController.getNameItems())
                         {
                             NameItem newni = ni.GetClone();
                             namess.add(newni);
@@ -137,11 +137,11 @@ public class OrdersFragment extends Fragment {
                         if (!orderprice.getText().toString().equals("")) {
                             OI.setItemPrice(Double.valueOf(orderprice.getText().toString()));
                         }
-                        SessionActivity.sessionController.getOrderItems().add(OI);
+                        SessionActivity.ordersController.getOrderItems().add(OI);
                         ordersAdapter = new OrdersAdapter(getContext());
                         itemList.setAdapter(ordersAdapter);
                         dialog.dismiss();
-                        SessionActivity.sessionController.PrintOrders();
+                        SessionActivity.ordersController.PrintOrders();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
