@@ -112,7 +112,7 @@ public class OrdersFragment extends Fragment {
                         //ArrayList<NameItem> namess = new ArrayList<>();
                         //namess.addAll(SessionActivity.sessionController.getNameItems());
 
-                      //  ArrayList<NameItem> namess = ( ArrayList<NameItem>)SessionActivity.sessionController.getNameItems().clone();
+                        //ArrayList<NameItem> namess = ( ArrayList<NameItem>)SessionActivity.sessionController.getNameItems().clone();
                         ArrayList<NameItem> namess = new ArrayList<>();
                         for (NameItem ni:SessionActivity.sessionController.getNameItems())
                         {

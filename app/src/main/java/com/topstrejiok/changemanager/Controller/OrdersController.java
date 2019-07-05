@@ -26,7 +26,8 @@ public class OrdersController {
         return newNameItems;
 
 
-        */return  nameItems;
+        */
+        return nameItems;
     }
 
     public void setNameItems(ArrayList<NameItem> nameItems) {
@@ -41,27 +42,27 @@ public class OrdersController {
         this.orderItems = orderItems;
     }
 
-    public void removeName(String name, String id){
+    public void removeName(String name, String id) {
         Log.d(LogD, "removeName");
         int n = 0;
-        for (int i = 0; i < nameItems.size(); i++){
-            if (nameItems.get(i).getName().equals(name) && nameItems.get(i).getId().equals(id)){
+        for (int i = 0; i < nameItems.size(); i++) {
+            if (nameItems.get(i).getName().equals(name) && nameItems.get(i).getId().equals(id)) {
                 nameItems.remove(i);
                 n++;
             }
         }
-        Log.d(LogD,n + " items was removed in NameItems");
+        Log.d(LogD, n + " items was removed in NameItems");
         n = 0;
-        for (int i = 0; i < orderItems.size(); i++){
-           for (int j = 0; j < orderItems.get(i).getNames().size(); j++){
-               if (orderItems.get(i).getNames().get(j).getName().equals(name) &&
-                       orderItems.get(i).getNames().get(j).getId().equals(id)){
-                   orderItems.get(i).getNames().remove(j);
-                   n++;
-               }
-           }
+        for (int i = 0; i < orderItems.size(); i++) {
+            for (int j = 0; j < orderItems.get(i).getNames().size(); j++) {
+                if (orderItems.get(i).getNames().get(j).getName().equals(name) &&
+                        orderItems.get(i).getNames().get(j).getId().equals(id)) {
+                    orderItems.get(i).getNames().remove(j);
+                    n++;
+                }
+            }
         }
-        Log.d(LogD,n + " items was removed in OrderItems");
+        Log.d(LogD, n + " items was removed in OrderItems");
     }
 
     public void PrintOrders() {
@@ -79,44 +80,31 @@ public class OrdersController {
         Log.d(LogD, S.toString());
     }
 
-    public void Calculate()
-    {
+    public void Calculate() {
         ArrayList<Person> people = new ArrayList<>();
-        for (NameItem ni : getNameItems())
-        {
-            people.add(new Person(ni.getId(),ni.getName(),0,ni.getDonate()));
+        for (NameItem ni : getNameItems()) {
+            people.add(new Person(ni.getId(), ni.getName(), 0, ni.getDonate()));
         }
 
-        for (OrderItem oi : getOrderItems())
-        {
-            if (oi.getForeach())
-            {
-                for (NameItem locNi : oi.getNames())
-                {
-                    for (Person p : people)
-                    {
-                        if (p.ID == locNi.getId())
-                        {
-                            p.SetOrderedOn(p.GetOrderedOn()+oi.getItemPrice());
+        for (OrderItem oi : getOrderItems()) {
+            if (oi.getForeach()) {
+                for (NameItem locNi : oi.getNames()) {
+                    for (Person p : people) {
+                        if (p.ID == locNi.getId()) {
+                            p.SetOrderedOn(p.GetOrderedOn() + oi.getItemPrice());
                         }
                     }
-
                 }
-            }
-            else {
-                for (NameItem locNi : oi.getNames())
-                {
-                    for (Person p : people)
-                    {
-                        if (p.ID == locNi.getId())
-                        {
-                            p.SetOrderedOn(p.GetOrderedOn()+oi.getItemPrice()/oi.getNames().size()+1);
+            } else {
+                for (NameItem locNi : oi.getNames()) {
+                    for (Person p : people) {
+                        if (p.ID == locNi.getId()) {
+                            p.SetOrderedOn(p.GetOrderedOn() + oi.getItemPrice() / oi.getNames().size());
                         }
                     }
                 }
             }
         }
-
 
 
         Group.People = people;

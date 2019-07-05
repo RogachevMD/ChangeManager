@@ -76,6 +76,13 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                 alert.show();
             }
         });
+
+        ordersVH.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
