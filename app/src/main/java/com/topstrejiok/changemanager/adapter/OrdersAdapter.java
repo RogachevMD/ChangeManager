@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -101,7 +102,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                 rbfe.setOnClickListener(radioClick);
                 rbfa.setOnClickListener(radioClick);
                 OrderItem OIMAIN = SessionActivity.ordersController.getOrderItems().get(position);
-                /*((CheckBox) v.findViewById(R.id.cbselectall)).setOnCheckedChangeListener(
+                ((CheckBox) v.findViewById(R.id.cbselectall)).setOnCheckedChangeListener(
                         new CompoundButton.OnCheckedChangeListener() {
                             @Override
                             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -112,7 +113,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                                     }
                                 }
                             }
-                        });*/
+                        });
                 ordername.setText(OIMAIN.getItemName());
                 orderprice.setText(OIMAIN.getItemPrice().toString());
                 if (OIMAIN.getForeach()) {
