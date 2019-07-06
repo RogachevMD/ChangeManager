@@ -88,18 +88,18 @@ public class OrdersController {
 
         for (OrderItem oi : getOrderItems()) {
             if (oi.getForeach()) {
-                for (NameItem locNi : oi.getNames()) {
+                for (NameItem locNi : oi.GetCheckedNameItems()) {
                     for (Person p : people) {
-                        if (p.ID == locNi.getId()) {
+                        if (p.ID == locNi.getId()  && locNi.getChecked()) {
                             p.SetOrderedOn(p.GetOrderedOn() + oi.getItemPrice());
                         }
                     }
                 }
             } else {
-                for (NameItem locNi : oi.getNames()) {
+                for (NameItem locNi : oi.GetCheckedNameItems()) {
                     for (Person p : people) {
                         if (p.ID == locNi.getId()) {
-                            p.SetOrderedOn(p.GetOrderedOn() + oi.getItemPrice() / oi.getNames().size());
+                            p.SetOrderedOn(p.GetOrderedOn() + oi.getItemPrice() / oi.GetCheckedNameItems().size());
                         }
                     }
                 }

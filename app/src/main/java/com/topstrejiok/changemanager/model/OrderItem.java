@@ -46,4 +46,14 @@ public class OrderItem {
     public void setNames(ArrayList<NameItem> names) {
         Names = new ArrayList<>(names);
     }
+
+    public ArrayList<NameItem> GetCheckedNameItems()
+    {
+        ArrayList<NameItem> CheckedNameitems = new ArrayList<>();
+        for (NameItem ni : Names)
+        {
+            if (ni.getChecked()) CheckedNameitems.add(ni);
+        }
+        return  CheckedNameitems;
+    };
 }
