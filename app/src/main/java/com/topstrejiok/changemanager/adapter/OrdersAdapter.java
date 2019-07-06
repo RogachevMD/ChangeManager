@@ -48,6 +48,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
         ordersVH.orderPrice.setText(String.valueOf(SessionActivity.ordersController.getOrderItems()
                 .get(ordersVH.getAdapterPosition()).getItemPrice()));
 
+        ordersVH.nameHolder.removeAllViews();
+
         for (NameItem ni : SessionActivity.ordersController.getOrderItems()
                 .get(ordersVH.getAdapterPosition()).getNames()) {
             if (ni.getChecked()) {
@@ -74,13 +76,15 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         SessionActivity.ordersController.
-                                getOrderItems().remove(ordersVH.getAdapterPosition());
+                                getOrderItems().remove(position);
                         notifyDataSetChanged();
                         dialogInterface.dismiss();
                     }
                 });
+
                 AlertDialog alert = builder.create();
                 alert.show();
+
             }
         });
 
@@ -111,10 +115,12 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                         });*/
                 ordername.setText(OIMAIN.getItemName());
                 orderprice.setText(OIMAIN.getItemPrice().toString());
-                if (OIMAIN.getForeach()){
+                if (OIMAIN.getForeach()) {
+                    foreach = true;
                     rbfe.setChecked(true);
                     rbfa.setChecked(false);
-                }else {
+                } else {
+                    foreach = false;
                     rbfa.setChecked(true);
                     rbfe.setChecked(false);
                 }
@@ -131,11 +137,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                 builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        OrderItem OI = new OrderItem("Order", 0.0, true, null);
+                        OrderItem OI = new OrderItem("Order", 0.0, foreach, null);
 
                         ArrayList<NameItem> namess = new ArrayList<>();
-                        for (NameItem ni:SessionActivity.ordersController.getOrderItems().get(position).getNames())
-                        {
+                        for (NameItem ni : SessionActivity.ordersController.getOrderItems().get(position).getNames()) {
                             NameItem newni = ni.GetClone();
                             namess.add(newni);
                         }
@@ -157,6 +162,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                         if (!orderprice.getText().toString().equals("")) {
                             OI.setItemPrice(Double.valueOf(orderprice.getText().toString()));
                         }
+
+
                         SessionActivity.ordersController.getOrderItems().set(position, OI);
                         dialog.dismiss();
                         //SessionActivity.ordersController.PrintOrders();
@@ -214,4 +221,11 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
             }
         }
     };
+
+    public void UpdateView()
+    {
+
+    }
+
+
 }

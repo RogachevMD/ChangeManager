@@ -1,5 +1,6 @@
 package com.topstrejiok.changemanager.fragment;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -64,8 +65,12 @@ public class OrdersFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        //itemList.removeAllViews();
+        //itemList.setAdapter(ordersAdapter);
         ordersAdapter.notifyDataSetChanged();
+        ordersAdapter.UpdateView();
     }
+
 
     private void init() {
         floatingActionButton = getView().findViewById(R.id.addorders);
@@ -163,4 +168,6 @@ public class OrdersFragment extends Fragment {
         ordersAdapter = new OrdersAdapter(this.getContext());
         itemList.setAdapter(ordersAdapter);
     }
+
+
 }

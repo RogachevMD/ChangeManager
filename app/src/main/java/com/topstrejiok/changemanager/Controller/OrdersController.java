@@ -65,6 +65,22 @@ public class OrdersController {
         Log.d(LogD, n + " items was removed in OrderItems");
     }
 
+    public void addNewNames(String name) {
+        Log.d(LogD, "addName");
+        NameItem newNameItem = new NameItem(name);
+
+        int n = 0;
+        boolean has = false;
+        nameItems.add(newNameItem.GetClone());
+
+        Log.d(LogD, n + " items was removed in NameItems");
+        n = 0;
+        for (OrderItem oi : orderItems) {
+            oi.getNames().add(newNameItem.GetClone());
+        }
+        Log.d(LogD, n + " items was added in OrderItems");
+    }
+
     public void PrintOrders() {
         for (OrderItem OI : getOrderItems()) {
             Log.d(LogD, "Order: " + OI.getItemName());

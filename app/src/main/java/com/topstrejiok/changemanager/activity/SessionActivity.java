@@ -37,31 +37,31 @@ public class SessionActivity extends AppCompatActivity {
     }
 
     private void init() {
-
         navigationView = findViewById(R.id.bottomnavbar);
         fragmentContainer = findViewById(R.id.fragmentcontainer);
-        fm.beginTransaction().add(fragmentContainer.getId(), fragmentChange, "3")
+    /*    fm.beginTransaction().add(fragmentContainer.getId(), fragmentChange, "3")
                 .hide(fragmentChange).commit();
         fm.beginTransaction().add(fragmentContainer.getId(), fragmentGroup, "2")
                 .hide(fragmentGroup).commit();
         fm.beginTransaction().add(fragmentContainer.getId(), fragmentOrder, "1")
-                .commit();
+                .commit();*/
         navigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                        fragmentContainer.removeAllViews();
                         switch (menuItem.getItemId()) {
                             case R.id.action_orders:
-                                fm.beginTransaction().hide(active).show(fragmentOrder).commit();
-                                active = fragmentOrder;
+                                fm.beginTransaction().add(fragmentContainer.getId(), new OrdersFragment(), "1")
+                                        .commit();
                                 return true;
                             case R.id.action_group:
-                                fm.beginTransaction().hide(active).show(fragmentGroup).commit();
-                                active = fragmentGroup;
+                                fm.beginTransaction().add(fragmentContainer.getId(),  new GroupFragment(), "2")
+                                        .commit();
                                 return true;
                             case R.id.action_money:
-                                fm.beginTransaction().hide(active).show(fragmentChange).commit();
-                                active = fragmentChange;
+                                fm.beginTransaction().add(fragmentContainer.getId(),  new ChangeFragment(), "3")
+                                        .commit();
                                 return true;
                         }
                         return false;
