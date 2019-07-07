@@ -1,11 +1,34 @@
 <resources>
     <string name="app_name">ChangeManager</string>
+
     <string name="text_orders">Orders</string>
     <string name="text_group">Group</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_ok">OK</string>
+    <string name="text_add_session">Add Session</string>
+    <string name="text_name">Name</string>
+    <string name="text_add">Add</string>
+    <string name="text_are_you_sure">Are You sure?</string>
+    <string name="text_delete">Delete</string>
+    <string name="text_change_name">Change Name</string>
+    <string name="text_add_order">Add Order</string>
+    <string name="text_edit">Edit</string>
+    <string name="text_edit_order">Edit Order</string>
+    <string name="text_item_name">Name</string>
+    <string name="text_price">Price</string>
+    <string name="text_for_each">For each</string>
+    <string name="text_for_all">For all</string>
+    <string name="text_select_all">Select all</string>
+    <string name="text_add_person">Add Person</string>
+    <string name="text_enter_donations">Enter donations</string>
+    <string name="text_donation">Donation</string>
+    <string name="text_donated">Donated</string>
     <string name="text_change">Change</string>
+    <string name="text_need">Need</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="fragment_order">fragment_order</string>
     <string name="fragment_group">fragment_group</string>
     <string name="fragment_change">fragment_change</string>
+
 </resources>

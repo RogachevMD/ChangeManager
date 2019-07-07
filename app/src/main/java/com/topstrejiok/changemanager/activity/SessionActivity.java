@@ -102,6 +102,4 @@ public class SessionActivity extends AppCompatActivity {
             }.getType());
         }
     }
-
-
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_orders">Заказы</string>
+    <string name="text_group">Группа</string>
+    <string name="text_cancel">Отмена</string>
+    <string name="text_ok">ОК</string>
+    <string name="text_add_session">Добавить сессию</string>
+    <string name="text_name">Имя</string>
+    <string name="text_add">Добавить</string>
+    <string name="text_are_you_sure">Вы уверены?</string>
+    <string name="text_delete">Удалить</string>
+    <string name="text_change_name">Изменить имя</string>
+    <string name="text_add_order">Добавить заказ</string>
+    <string name="text_edit">Узменить</string>
+    <string name="text_edit_order">Изменить заказ</string>
+    <string name="text_item_name">Название</string>
+    <string name="text_price">Цена</string>
+    <string name="text_for_each">Для каждого</string>
+    <string name="text_for_all">Для всех</string>
+    <string name="text_select_all">Выбрать всех</string>
+    <string name="text_add_person">Добавить человека</string>
+    <string name="text_enter_donations">Сумма взноса</string>
+    <string name="text_donation">Взнос</string>
+    <string name="text_donated">Внесено</string>
+    <string name="text_change">Сдача</string>
+    <string name="text_need">Не хватает</string>
+
+</resources>

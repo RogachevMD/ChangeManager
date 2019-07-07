@@ -62,14 +62,14 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Are You sure?");
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.text_are_you_sure);
+                builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
-                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.text_delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         sessionController.getSessionItem().remove(position);
@@ -86,11 +86,11 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Change Name");
+                builder.setTitle(R.string.text_change_name);
                 final View edt = LayoutInflater.from(context).inflate(R.layout.alert_item_session, null);
                 ((TextView) edt.findViewById(R.id.AlertName)).setText(sessionController.getSessionItem().get(position).getName());
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.text_ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sessionController.getSessionItem().get(position).setName(((TextView) edt.findViewById(R.id.AlertName))
@@ -101,7 +101,7 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
                     }
                 });
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();

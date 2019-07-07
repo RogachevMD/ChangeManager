@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.activity.SessionActivity;
 import com.topstrejiok.changemanager.adapter.NameAdapter;
-import com.topstrejiok.changemanager.model.NameItem;
 
 
 public class GroupFragment extends Fragment {
@@ -50,9 +49,9 @@ public class GroupFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Add Person");
+                builder.setTitle(R.string.text_add_person);
                 final View v = getLayoutInflater().inflate(R.layout.alert_item_session, null);
-                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.text_add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (!((TextView) v.findViewById(R.id.AlertName))
@@ -65,7 +64,7 @@ public class GroupFragment extends Fragment {
                         dialog.dismiss();
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();

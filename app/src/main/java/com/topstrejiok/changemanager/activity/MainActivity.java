@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Add Session");
+                builder.setTitle(R.string.text_add_session);
                 final View view = getLayoutInflater().inflate(R.layout.alert_item_session, null);
 
-                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.text_add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (!((TextView) view.findViewById(R.id.AlertName))
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         sessionAdapter.notifyDataSetChanged();
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();

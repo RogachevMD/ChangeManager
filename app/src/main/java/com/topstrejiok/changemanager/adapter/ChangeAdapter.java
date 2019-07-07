@@ -22,7 +22,15 @@ public class ChangeAdapter extends RecyclerView.Adapter<ChangeAdapter.ChangeVH> 
 
     @Override
     public void onBindViewHolder(@NonNull ChangeVH changeVH, int i) {
-        changeVH.name1.setText(Group.Owns.get(i).from.Name);
+        switch (Group.Owns.get(i).from.Name) {
+            case "Change":
+                changeVH.name1.setText(R.string.text_change);
+            case "Need":
+                changeVH.name1.setText(R.string.text_need);
+            default:
+                changeVH.name1.setText(Group.Owns.get(i).from.Name);
+        }
+
         changeVH.name2.setText(Group.Owns.get(i).to.Name);
         changeVH.money.setText(String.valueOf(Group.Owns.get(i).money));
     }
@@ -32,11 +40,12 @@ public class ChangeAdapter extends RecyclerView.Adapter<ChangeAdapter.ChangeVH> 
         return Group.Owns.size();
     }
 
-    class ChangeVH extends RecyclerView.ViewHolder{
+    class ChangeVH extends RecyclerView.ViewHolder {
 
         TextView name1;
         TextView name2;
         TextView money;
+
         public ChangeVH(@NonNull View itemView) {
             super(itemView);
             name1 = itemView.findViewById(R.id.name1);
