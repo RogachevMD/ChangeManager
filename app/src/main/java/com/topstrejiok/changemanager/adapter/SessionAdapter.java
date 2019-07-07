@@ -131,7 +131,7 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
 
         SessionVH(@NonNull View v) {
             super(v);
-            root = (ConstraintLayout) v;
+            root = v.findViewById(R.id.root);
             header = v.findViewById(R.id.header);
             dateTime = v.findViewById(R.id.dateTime);
             delete = v.findViewById(R.id.delete);
