@@ -61,6 +61,7 @@ public class GroupFragment extends Fragment {
                                     .getText().toString());
                             nameAdapter.notifyDataSetChanged();
                         }
+
                         dialog.dismiss();
                     }
                 });

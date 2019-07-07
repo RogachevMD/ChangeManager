@@ -48,8 +48,5 @@ public class ChangeFragment extends Fragment {
         });
     }
 
-/*    public void Kek(View view)
-    {
-        SessionActivity.ordersController.Calculate();
-    }*/
+
 }

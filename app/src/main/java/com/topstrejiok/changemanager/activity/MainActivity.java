@@ -89,13 +89,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //FIXME говна
-
     private void saveData() {
         mPrefs = getSharedPreferences("ASSA",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = gson.toJson(sessionController);
         mPrefs.edit().putString(KEY_SESSIONS, json).apply();
     }
+
+    
 
     private SessionController loadData() {
         mPrefs = getSharedPreferences("ASSA",MODE_PRIVATE);

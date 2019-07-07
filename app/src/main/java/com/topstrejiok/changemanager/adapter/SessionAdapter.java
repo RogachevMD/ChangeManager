@@ -52,8 +52,8 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SessionActivity.class);
+                intent.putExtra("kekshrek",sessionController.getSessionItem().get(position).getId());
                 context.startActivity(intent);
-
             }
         });
         sessionVH.header.setText(sessionController.getSessionItem().get(position).getName());

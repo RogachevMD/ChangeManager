@@ -1,5 +1,6 @@
 package com.topstrejiok.changemanager.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.topstrejiok.changemanager.Controller.OrdersController;
+import com.topstrejiok.changemanager.Controller.SessionController;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.fragment.ChangeFragment;
 import com.topstrejiok.changemanager.fragment.GroupFragment;
@@ -28,12 +32,21 @@ public class SessionActivity extends AppCompatActivity {
     Fragment active = fragmentOrder;
     private BottomNavigationView navigationView;
     private FrameLayout fragmentContainer;
+    private SharedPreferences sharedPreferences;
+    private String mainKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
+        loadData();
         init();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveData();
     }
 
     private void init() {
@@ -70,4 +83,29 @@ public class SessionActivity extends AppCompatActivity {
         ordersController.getNameItems().add(new NameItem("Пенис"));
         ordersController.getNameItems().add(new NameItem("Детров"));
     }
+
+    private void saveData()
+    {
+        mainKey = getIntent().getExtras().getString("kekshrek");
+        sharedPreferences = getSharedPreferences("Jopa",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = gson.toJson(ordersController);
+        sharedPreferences.edit().putString(mainKey, json).apply();
+    }
+
+    private OrdersController loadData()
+    {
+        mainKey = getIntent().getExtras().getString("kekshrek");
+        sharedPreferences = getSharedPreferences("Jopa",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString(mainKey, "");
+        if (json.equals("")) {
+            return new OrdersController();
+        } else {
+            return gson.fromJson(json, new TypeToken<OrdersController>(){}.getType());
+        }
+    }
+
+
+
 }
