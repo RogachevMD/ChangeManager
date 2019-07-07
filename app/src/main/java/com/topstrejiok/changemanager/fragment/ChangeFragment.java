@@ -17,7 +17,6 @@ import com.topstrejiok.changemanager.adapter.ChangeAdapter;
 
 
 public class ChangeFragment extends Fragment {
-    private  Button btn;
     private RecyclerView recyclerView;
     private ChangeAdapter changeAdapter;
 
@@ -30,22 +29,19 @@ public class ChangeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        Init();
+    }
+
+    private void Init() {
         recyclerView = getView().findViewById(R.id.rvchange);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        btn =  getView().findViewById(R.id.get_change);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SessionActivity.ordersController.Calculate();
-                recyclerView.setAdapter(new ChangeAdapter());
-            }
-        });
+        SessionActivity.ordersController.Calculate();
+        recyclerView.setAdapter(new ChangeAdapter());
     }
 
 

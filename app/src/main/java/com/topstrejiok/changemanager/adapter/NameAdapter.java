@@ -54,12 +54,15 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SessionActivity.ordersController.getNameItems()
-                                .get(position).setDonate(Double.parseDouble(((EditText)edt.findViewById(R.id.AlertName))
-                                .getText().toString()));
-                        ((EditText)view).setText(((EditText)edt.findViewById(R.id.AlertName))
-                                .getText().toString());
-                        notifyDataSetChanged();
+                        if ( !((EditText)edt.findViewById(R.id.AlertName))
+                                .getText().toString().equals("") ) {
+                            SessionActivity.ordersController.getNameItems()
+                                    .get(position).setDonate(Double.parseDouble(((EditText) edt.findViewById(R.id.AlertName))
+                                    .getText().toString()));
+                            ((EditText) view).setText(((EditText) edt.findViewById(R.id.AlertName))
+                                    .getText().toString());
+                            notifyDataSetChanged();
+                        }
                         dialog.dismiss();
                     }
                 });

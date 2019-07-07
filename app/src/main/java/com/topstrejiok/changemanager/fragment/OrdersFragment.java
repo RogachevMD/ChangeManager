@@ -32,7 +32,7 @@ public class OrdersFragment extends Fragment {
     private FloatingActionButton floatingActionButton;
     private RecyclerView itemList;
     private OrdersAdapter ordersAdapter;
-    private boolean foreach = true;
+    private boolean foreach = false;
 
     View.OnClickListener radioClick = new View.OnClickListener() {
         @Override

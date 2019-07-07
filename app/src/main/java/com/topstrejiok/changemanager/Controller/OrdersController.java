@@ -106,7 +106,7 @@ public class OrdersController {
             if (oi.getForeach()) {
                 for (NameItem locNi : oi.GetCheckedNameItems()) {
                     for (Person p : people) {
-                        if (p.ID == locNi.getId()  && locNi.getChecked()) {
+                        if (p.ID.equals(locNi.getId()) && locNi.getChecked()) {
                             p.SetOrderedOn(p.GetOrderedOn() + oi.getItemPrice());
                         }
                     }
@@ -114,7 +114,7 @@ public class OrdersController {
             } else {
                 for (NameItem locNi : oi.GetCheckedNameItems()) {
                     for (Person p : people) {
-                        if (p.ID == locNi.getId()) {
+                        if (p.ID.equals(locNi.getId())) {
                             p.SetOrderedOn(p.GetOrderedOn() + oi.getItemPrice() / oi.GetCheckedNameItems().size());
                         }
                     }

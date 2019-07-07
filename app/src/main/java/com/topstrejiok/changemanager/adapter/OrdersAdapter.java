@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> {
 
     private Context context;
-    private boolean foreach;
+    private boolean foreach = false;
 
     public OrdersAdapter(Context context) {
         this.context = context;
