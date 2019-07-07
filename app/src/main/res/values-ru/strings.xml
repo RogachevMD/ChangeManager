@@ -24,5 +24,6 @@
     <string name="text_donated">Внесено</string>
     <string name="text_change">Сдача</string>
     <string name="text_need">Не хватает</string>
+    <string name="text_sessions">Сессии</string>
 
 </resources>

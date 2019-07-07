@@ -25,6 +25,7 @@
     <string name="text_donated">Donated</string>
     <string name="text_change">Change</string>
     <string name="text_need">Need</string>
+    <string name="text_sessions">Sessions</string>
 
 
     <string name="fragment_order">fragment_order</string>

@@ -56,6 +56,7 @@ public class SessionActivity extends AppCompatActivity {
                 .hide(fragmentGroup).commit();*/
         fm.beginTransaction().add(fragmentContainer.getId(), new OrdersFragment(), "1")
                 .commit();
+        setTitle(R.string.text_orders);
         navigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -63,14 +64,17 @@ public class SessionActivity extends AppCompatActivity {
                         fragmentContainer.removeAllViews();
                         switch (menuItem.getItemId()) {
                             case R.id.action_orders:
+                                setTitle(R.string.text_orders);
                                 fm.beginTransaction().add(fragmentContainer.getId(), new OrdersFragment(), "1")
                                         .commit();
                                 return true;
                             case R.id.action_group:
+                                setTitle(R.string.text_group);
                                 fm.beginTransaction().add(fragmentContainer.getId(), new GroupFragment(), "2")
                                         .commit();
                                 return true;
                             case R.id.action_money:
+                                setTitle(R.string.text_change);
                                 fm.beginTransaction().add(fragmentContainer.getId(), new ChangeFragment(), "3")
                                         .commit();
                                 return true;
@@ -101,5 +105,11 @@ public class SessionActivity extends AppCompatActivity {
             return gson.fromJson(json, new TypeToken<OrdersController>() {
             }.getType());
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveData();
     }
 }
