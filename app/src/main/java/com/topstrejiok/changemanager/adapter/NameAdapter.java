@@ -34,11 +34,17 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
     @Override
     public void onBindViewHolder(@NonNull NameViewHolder nameViewHolder,
                                  @SuppressLint("RecyclerView") final int position) {
+        if (SessionActivity.ordersController.getNameItems()
+                .get(position).getDonate() != 0.0){
+            nameViewHolder.donate.setText(SessionActivity.ordersController.getNameItems()
+                    .get(position).getDonate().toString());
+        }
         nameViewHolder.donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Enter donation");
+
                 final View edt = LayoutInflater.from(context).inflate(R.layout.alert_item_donation, null);
                 if (SessionActivity.ordersController.getNameItems()
                         .get(position).getDonate() != 0.0){
