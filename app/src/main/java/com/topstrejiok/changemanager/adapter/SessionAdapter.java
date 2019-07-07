@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,9 +45,9 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
     @Override
     public void onBindViewHolder(@NonNull SessionVH sessionVH, final int position) {
         if (position % 2 == 1) {
-            sessionVH.root.setBackgroundColor(context.getColor(R.color.colorFirst));
+            sessionVH.root.setBackgroundColor(ContextCompat.getColor(context,R.color.colorFirst));
         } else {
-            sessionVH.root.setBackgroundColor(context.getColor(R.color.colorSecond));
+            sessionVH.root.setBackgroundColor(ContextCompat.getColor(context,R.color.colorSecond));
         }
         sessionVH.root.setOnClickListener(new View.OnClickListener() {
             @Override
