@@ -1,6 +1,5 @@
 package com.topstrejiok.changemanager.fragment;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -108,8 +107,8 @@ public class OrdersFragment extends Fragment {
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("Add Item");
-                builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.text_add_order);
+                builder.setPositiveButton(R.string.text_add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         OrderItem OI = new OrderItem("Order", 0.0, foreach, null);
@@ -149,7 +148,7 @@ public class OrdersFragment extends Fragment {
                         SessionActivity.ordersController.PrintOrders();
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();

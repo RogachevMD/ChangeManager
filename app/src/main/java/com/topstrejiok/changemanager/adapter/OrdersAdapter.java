@@ -66,14 +66,14 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Are You sure?");
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.text_are_you_sure);
+                builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
-                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.text_delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         SessionActivity.ordersController.
@@ -134,8 +134,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Edit Order");
-                builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.text_edit_order);
+                builder.setPositiveButton(R.string.text_edit, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         OrderItem OI = new OrderItem("Order", 0.0, foreach, null);
@@ -171,7 +171,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
                         notifyDataSetChanged();
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
