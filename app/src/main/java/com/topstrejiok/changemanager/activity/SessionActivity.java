@@ -13,12 +13,10 @@ import android.widget.FrameLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.topstrejiok.changemanager.Controller.OrdersController;
-import com.topstrejiok.changemanager.Controller.SessionController;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.fragment.ChangeFragment;
 import com.topstrejiok.changemanager.fragment.GroupFragment;
 import com.topstrejiok.changemanager.fragment.OrdersFragment;
-import com.topstrejiok.changemanager.model.NameItem;
 
 public class SessionActivity extends AppCompatActivity {
 
@@ -39,7 +37,6 @@ public class SessionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
-        loadData();
         init();
     }
 
@@ -50,14 +47,15 @@ public class SessionActivity extends AppCompatActivity {
     }
 
     private void init() {
+        ordersController = loadData();
         navigationView = findViewById(R.id.bottomnavbar);
         fragmentContainer = findViewById(R.id.fragmentcontainer);
     /*    fm.beginTransaction().add(fragmentContainer.getId(), fragmentChange, "3")
                 .hide(fragmentChange).commit();
         fm.beginTransaction().add(fragmentContainer.getId(), fragmentGroup, "2")
-                .hide(fragmentGroup).commit();
-        fm.beginTransaction().add(fragmentContainer.getId(), fragmentOrder, "1")
-                .commit();*/
+                .hide(fragmentGroup).commit();*/
+        fm.beginTransaction().add(fragmentContainer.getId(), new OrdersFragment(), "1")
+                .commit();
         navigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -69,43 +67,41 @@ public class SessionActivity extends AppCompatActivity {
                                         .commit();
                                 return true;
                             case R.id.action_group:
-                                fm.beginTransaction().add(fragmentContainer.getId(),  new GroupFragment(), "2")
+                                fm.beginTransaction().add(fragmentContainer.getId(), new GroupFragment(), "2")
                                         .commit();
                                 return true;
                             case R.id.action_money:
-                                fm.beginTransaction().add(fragmentContainer.getId(),  new ChangeFragment(), "3")
+                                fm.beginTransaction().add(fragmentContainer.getId(), new ChangeFragment(), "3")
                                         .commit();
                                 return true;
                         }
                         return false;
                     }
                 });
-        ordersController.getNameItems().add(new NameItem("Пенис"));
-        ordersController.getNameItems().add(new NameItem("Детров"));
+        //ordersController.getNameItems().add(new NameItem("Пенис"));
+        //ordersController.getNameItems().add(new NameItem("Детров"));
     }
 
-    private void saveData()
-    {
+    private void saveData() {
         mainKey = getIntent().getExtras().getString("kekshrek");
-        sharedPreferences = getSharedPreferences("Jopa",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(mainKey, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = gson.toJson(ordersController);
         sharedPreferences.edit().putString(mainKey, json).apply();
     }
 
-    private OrdersController loadData()
-    {
-        mainKey = getIntent().getExtras().getString("kekshrek");
-        sharedPreferences = getSharedPreferences("Jopa",MODE_PRIVATE);
+    private OrdersController loadData() {
+        mainKey = getIntent().getStringExtra("kekshrek");
+        sharedPreferences = getSharedPreferences(mainKey, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString(mainKey, "");
         if (json.equals("")) {
             return new OrdersController();
         } else {
-            return gson.fromJson(json, new TypeToken<OrdersController>(){}.getType());
+            return gson.fromJson(json, new TypeToken<OrdersController>() {
+            }.getType());
         }
     }
-
 
 
 }
