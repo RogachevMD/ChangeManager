@@ -25,13 +25,19 @@ public class ChangeAdapter extends RecyclerView.Adapter<ChangeAdapter.ChangeVH> 
         switch (Group.Owns.get(i).from.Name) {
             case "Change":
                 changeVH.name1.setText(R.string.text_change);
-            case "Need":
-                changeVH.name1.setText(R.string.text_need);
+                break;
             default:
                 changeVH.name1.setText(Group.Owns.get(i).from.Name);
+                break;
         }
-
-        changeVH.name2.setText(Group.Owns.get(i).to.Name);
+        switch (Group.Owns.get(i).to.Name) {
+            case "Need":
+                changeVH.name2.setText(R.string.text_need);
+                break;
+            default:
+                changeVH.name2.setText(Group.Owns.get(i).to.Name);
+                break;
+        }
         changeVH.money.setText(String.valueOf(Group.Owns.get(i).money));
     }
 
