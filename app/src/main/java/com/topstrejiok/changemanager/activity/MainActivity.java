@@ -18,8 +18,6 @@ import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.adapter.SessionAdapter;
 import com.topstrejiok.changemanager.model.SessionListItem;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
 
     public static final String KEY_SESSIONS = "KEY_SESSIONS";
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView SessionRecyclerView;
     private SessionAdapter sessionAdapter ;
     private FloatingActionButton addSessionButton;
-    private ArrayList<SessionListItem> data = new ArrayList<>();
+    //private ArrayList<SessionListItem> data = new ArrayList<>();
     public static SessionController sessionController;
 
     @Override
@@ -86,10 +84,12 @@ public class MainActivity extends AppCompatActivity {
         SessionRecyclerView = findViewById(R.id.SessionView);
         SessionRecyclerView.setHasFixedSize(true);
         SessionRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        sessionAdapter = new SessionAdapter(this, mPrefs);
+        sessionAdapter = new SessionAdapter(this);
         SessionRecyclerView.setAdapter(sessionAdapter);
     }
+
     //FIXME говна
+
     private void saveData() {
         mPrefs = getSharedPreferences("ASSA",MODE_PRIVATE);
         Gson gson = new Gson();

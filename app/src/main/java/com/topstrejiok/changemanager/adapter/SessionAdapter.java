@@ -29,9 +29,8 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
     private Context context;
     SharedPreferences mPrefs;
 
-    public SessionAdapter(Context context, SharedPreferences mPrefs) {
+    public SessionAdapter(Context context) {
         this.context = context;
-        this.mPrefs = mPrefs;
     }
 
     @NonNull
@@ -76,10 +75,10 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
                         sessionController.getSessionItem().remove(position);
                         dialogInterface.dismiss();
                         notifyDataSetChanged();
+                        saveData();
                     }
                 });
                 AlertDialog alert = builder.create();
-                saveData();
                 alert.show();
             }
         });
@@ -90,6 +89,7 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
                 builder.setTitle("Change Name");
                 final View edt = LayoutInflater.from(context).inflate(R.layout.alert_item_session, null);
                 ((TextView) edt.findViewById(R.id.AlertName)).setText(sessionController.getSessionItem().get(position).getName());
+
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -100,12 +100,14 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
                         dialog.dismiss();
                     }
                 });
+
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
                     }
                 });
+
                 builder.setView(edt);
                 AlertDialog alert = builder.create();
                 alert.show();
