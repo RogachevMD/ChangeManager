@@ -11,7 +11,7 @@
     <string name="text_delete">Удалить</string>
     <string name="text_change_name">Изменить имя</string>
     <string name="text_add_order">Добавить заказ</string>
-    <string name="text_edit">Узменить</string>
+    <string name="text_edit">Изменить</string>
     <string name="text_edit_order">Изменить заказ</string>
     <string name="text_item_name">Название</string>
     <string name="text_price">Цена</string>
