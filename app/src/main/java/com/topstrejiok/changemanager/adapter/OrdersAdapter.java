@@ -28,6 +28,20 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
 
     private Context context;
     private boolean foreach = false;
+    View.OnClickListener radioClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            RadioButton rb = (RadioButton) view;
+            switch (rb.getId()) {
+                case R.id.rbforeach:
+                    foreach = true;
+                    break;
+                case R.id.rbforall:
+                    foreach = false;
+                    break;
+            }
+        }
+    };
 
     public OrdersAdapter(Context context) {
         this.context = context;
@@ -45,7 +59,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
     public void onBindViewHolder(@NonNull final OrdersVH ordersVH, final int position) {
 
         ordersVH.orderName.setText(SessionActivity.ordersController.getOrderItems()
-                .get(ordersVH.getAdapterPosition()).getItemName() + position);
+                .get(ordersVH.getAdapterPosition()).getItemName() + " " + position);
         ordersVH.orderPrice.setText(String.valueOf(SessionActivity.ordersController.getOrderItems()
                 .get(ordersVH.getAdapterPosition()).getItemPrice()));
 
@@ -189,6 +203,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
         return SessionActivity.ordersController.getOrderItems().size();
     }
 
+    public void UpdateView() {
+
+    }
+
     static class OrdersVH extends RecyclerView.ViewHolder {
 
         TextView orderName;
@@ -207,26 +225,4 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersVH> 
 
         }
     }
-
-    View.OnClickListener radioClick = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            RadioButton rb = (RadioButton) view;
-            switch (rb.getId()) {
-                case R.id.rbforeach:
-                    foreach = true;
-                    break;
-                case R.id.rbforall:
-                    foreach = false;
-                    break;
-            }
-        }
-    };
-
-    public void UpdateView()
-    {
-
-    }
-
-
 }

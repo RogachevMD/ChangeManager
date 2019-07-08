@@ -10,7 +10,7 @@ public class SessionListItem {
     public SessionListItem(String name, Long id) {
         this.name = name;
         this.id = id;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MMMM/yyyy\nHH:mm");
         this.dateTime = simpleDateFormat.format(id);
     }
 
