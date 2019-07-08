@@ -51,7 +51,7 @@ public class OrdersController {
                 n++;
             }
         }
-        Log.d(LogD, n + " items was removed in NameItems");
+        Log.d(LogD, n + " items was removed in NameItems\nName: " + name + " \nId: " + id);
         n = 0;
         for (int i = 0; i < orderItems.size(); i++) {
             for (int j = 0; j < orderItems.get(i).getNames().size(); j++) {
@@ -62,23 +62,44 @@ public class OrdersController {
                 }
             }
         }
-        Log.d(LogD, n + " items was removed in OrderItems");
+        Log.d(LogD, n + " items was removed in OrderItems\nName: " + name + " \nId: " + id);
     }
 
-    public void addNewNames(String name) {
+    public void renameName(String oldName, String newName, String id) {
+        Log.d(LogD, "renameName");
+        int n = 0;
+        for (int i = 0; i < nameItems.size(); i++) {
+            if (nameItems.get(i).getName().equals(oldName) && nameItems.get(i).getId().equals(id)) {
+                nameItems.get(i).setName(newName);
+                n++;
+            }
+        }
+        Log.d(LogD, n + " items was renamed in NameItems\nOld Name: " + oldName + " => new Name: " + newName);
+        n = 0;
+        for (int i = 0; i < orderItems.size(); i++) {
+            for (int j = 0; j < orderItems.get(i).getNames().size(); j++) {
+                if (orderItems.get(i).getNames().get(j).getName().equals(oldName) &&
+                        orderItems.get(i).getNames().get(j).getId().equals(id)) {
+                    orderItems.get(i).getNames().get(j).setName(newName);
+                    n++;
+                }
+            }
+        }
+        Log.d(LogD, n + " items was renamed in OrderItems\nOld Name: " + oldName + " => new Name: " + newName);
+    }
+
+    public void addNewName(String name) {
         Log.d(LogD, "addName");
         NameItem newNameItem = new NameItem(name);
-
-        int n = 0;
-        boolean has = false;
+        int n = 1;
         nameItems.add(newNameItem.GetClone());
-
-        Log.d(LogD, n + " items was removed in NameItems");
+        Log.d(LogD, n + " items was added in NameItems\nName: " + name + " \nId: " + newNameItem.getId());
         n = 0;
         for (OrderItem oi : orderItems) {
             oi.getNames().add(newNameItem.GetClone());
+            n++;
         }
-        Log.d(LogD, n + " items was added in OrderItems");
+        Log.d(LogD, n + " items was added in OrderItems\nName: " + name + " \nId: " + newNameItem.getId());
     }
 
     public void PrintOrders() {

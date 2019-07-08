@@ -2,97 +2,104 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="4dp">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/colorSecond"
-            app:layout_constraintBottom_toTopOf="@+id/namecontainer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/ordername"
+            style="@style/TitleStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
             android:ellipsize="end"
-            android:fontFamily="sans-serif-black"
             android:maxLines="1"
-            android:text="TextView"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/size_header"
-            app:layout_constraintBottom_toTopOf="@+id/edit"
-            app:layout_constraintEnd_toEndOf="@+id/view"
+            android:text="Header"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/orderprice"
+            style="@style/BodyStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:ellipsize="end"
-            android:fontFamily="sans-serif-smallcaps"
             android:maxLines="1"
-            android:text="0123456789"
-            android:textColor="@android:color/background_dark"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/edit"
-            app:layout_constraintEnd_toStartOf="@+id/edit"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edit" />
-
-        <ImageView
-            android:id="@+id/delete"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bg_circle_solid"
-            android:padding="4dp"
-            android:tint="@color/colorFirst"
-            app:layout_constraintBottom_toTopOf="@+id/namecontainer"
+            android:text="price"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_delete" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ordername" />
 
-        <ImageView
-            android:id="@+id/edit"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bg_circle_solid"
-            android:padding="4dp"
-            android:tint="@color/colorFirst"
-            app:layout_constraintBottom_toTopOf="@+id/namecontainer"
-            app:layout_constraintEnd_toStartOf="@+id/delete"
-            app:layout_constraintTop_toTopOf="@+id/delete"
-            app:srcCompat="@drawable/ic_edit" />
+            android:background="@color/colorSecond"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderprice" />
 
         <LinearLayout
             android:id="@+id/namecontainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/orderprice"></LinearLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/colorSecond"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/namecontainer" />
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:drawableLeft="@drawable/ic_delete"
+            android:text="@string/text_delete"
+            app:layout_constraintStart_toEndOf="@+id/edit"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <Button
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:drawableLeft="@drawable/ic_edit"
+            android:text="@string/text_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/delete" />
     </android.support.constraint.ConstraintLayout>
 
 

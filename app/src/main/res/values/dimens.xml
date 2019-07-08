@@ -2,4 +2,8 @@
 <resources>
     <dimen name="size_header">28dp</dimen>
     <dimen name="size_substring">18dp</dimen>
+
+    <dimen name="size_title">21sp</dimen>
+    <dimen name="size_body">17sp</dimen>
+    <dimen name="size_metadata">15sp</dimen>
 </resources>

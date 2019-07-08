@@ -7,4 +7,8 @@
 
     <color name="colorFirst">#FFFFFF</color>
     <color name="colorSecond">#E2E2E1</color>
+
+    <color name="color_title">#000000</color>
+    <color name="color_body">#000000</color>
+    <color name="color_metadata">#000000</color>
 </resources>

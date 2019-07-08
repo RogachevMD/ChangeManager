@@ -9,5 +9,23 @@
         <item name="colorButtonNormal">@color/colorButtonNormal</item>
         <item name="android:textColor">@android:color/black</item>
     </style>
+    
+    <style name="TitleStyle">
+        <item name="android:textColor">@color/color_title</item>
+        <item name="android:textSize">@dimen/size_title</item>
+        <item name="android:fontFamily">@font/work_sans</item>
+    </style>
+
+    <style name="BodyStyle">
+        <item name="android:textColor">@color/color_body</item>
+        <item name="android:textSize">@dimen/size_body</item>
+        <item name="android:fontFamily">@font/work_sans</item>
+    </style>
+
+    <style name="MetadataStyle">
+        <item name="android:textColor">@color/color_metadata</item>
+        <item name="android:textSize">@dimen/size_metadata</item>
+        <item name="android:fontFamily">@font/work_sans</item>
+    </style>
 
 </resources>

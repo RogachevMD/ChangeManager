@@ -7,16 +7,14 @@
 
     <TextView
         android:id="@+id/itemName"
+        style="@style/MetadataStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:ellipsize="end"
-        android:fontFamily="@font/brawler"
         android:maxLines="1"
         android:paddingBottom="2dp"
         android:text="TextView"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
