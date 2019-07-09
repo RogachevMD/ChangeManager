@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.topstrejiok.changemanager.R;
@@ -150,8 +150,8 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
     static class NameViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
-        ImageView delete;
-        ImageView edit;
+        Button delete;
+        Button edit;
         EditText donate;
 
         public NameViewHolder(@NonNull View itemView) {
