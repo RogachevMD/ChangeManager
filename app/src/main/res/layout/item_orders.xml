@@ -81,24 +81,24 @@
 
         <Button
             android:id="@+id/delete"
+            style="@style/CustomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:drawableLeft="@drawable/ic_delete"
+            android:layout_marginEnd="8dp"
             android:text="@string/text_delete"
-            app:layout_constraintStart_toEndOf="@+id/edit"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <Button
             android:id="@+id/edit"
+            style="@style/CustomButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="13dp"
-            android:drawableLeft="@drawable/ic_edit"
+            android:layout_marginEnd="8dp"
             android:text="@string/text_edit"
             app:layout_constraintBottom_toBottomOf="@+id/delete"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/delete"
             app:layout_constraintTop_toTopOf="@+id/delete" />
     </android.support.constraint.ConstraintLayout>
 
