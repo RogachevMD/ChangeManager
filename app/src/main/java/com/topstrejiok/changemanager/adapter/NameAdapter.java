@@ -6,9 +6,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,10 +37,19 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
     public void onBindViewHolder(@NonNull NameViewHolder nameViewHolder,
                                  @SuppressLint("RecyclerView") final int position) {
         if (SessionActivity.ordersController.getNameItems()
-                .get(position).getDonate() != 0.0){
+                .get(position).getDonate() != 0.0) {
             nameViewHolder.donate.setText(SessionActivity.ordersController.getNameItems()
                     .get(position).getDonate().toString());
         }
+        nameViewHolder.donate.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE) {
+                    return true;
+                }
+                return false;
+            }
+        });
         nameViewHolder.donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
@@ -101,7 +112,7 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         SessionActivity.ordersController.removeName(SessionActivity.ordersController.getNameItems()
-                                .get(position).getName(),SessionActivity.ordersController.getNameItems()
+                                .get(position).getName(), SessionActivity.ordersController.getNameItems()
                                 .get(position).getId());
                         dialogInterface.dismiss();
                         notifyDataSetChanged();

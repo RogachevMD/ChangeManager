@@ -11,4 +11,5 @@
     <color name="color_title">#000000</color>
     <color name="color_body">#000000</color>
     <color name="color_metadata">#000000</color>
+    <color name="color_edittext">#ED9817</color>
 </resources>

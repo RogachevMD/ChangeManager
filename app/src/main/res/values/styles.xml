@@ -29,10 +29,11 @@
     </style>
 
     <style name="BodyStyleEdittext" parent="BodyStyle">
-        <item name="android:textColor">@color/colorButtonNormal</item>
+        <item name="android:textColor">#ED9817</item>
+        <item name="android:textColorHint">#ED9817</item>
     </style>
 
     <style name="CustomButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@android:color/holo_orange_dark</item>
+        <item name="android:textColor">#ED9817</item>
     </style>
 </resources>
