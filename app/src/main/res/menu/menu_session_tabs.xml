@@ -20,8 +20,9 @@
         android:title="@string/text_change"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_photo"
+        android:id="@+id/action_reciept"
         android:enabled="true"
+        android:visible="false"
         android:icon="@drawable/ic_receipt"
         android:title="@string/text_receipt"
         app:showAsAction="ifRoom"/>

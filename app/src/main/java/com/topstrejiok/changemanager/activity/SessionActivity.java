@@ -67,7 +67,7 @@ public class SessionActivity extends AppCompatActivity {
                                 fm.beginTransaction().add(fragmentContainer.getId(), new ChangeFragment(), "3")
                                         .commit();
                                 return true;
-                            case R.id.action_photo:
+                            case R.id.action_reciept:
                                 setTitle(R.string.text_receipt);
                                 fm.beginTransaction().add(fragmentContainer.getId(),new ReceiptFragment(),"4")
                                         .commit();

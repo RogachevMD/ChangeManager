@@ -33,6 +33,6 @@
     </style>
 
     <style name="CustomButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/colorButtonNormal</item>
+        <item name="android:textColor">@android:color/holo_orange_dark</item>
     </style>
 </resources>
