@@ -148,4 +148,16 @@ public class OrdersController {
         Group.Calculate();
         Group.OutOwns();
     }
+
+    public Double getFullPrice() {
+        double sum = 0.0;
+        for (OrderItem oi : orderItems) {
+            if (oi.getForeach()){
+                sum += oi.getItemPrice()*oi.getNames().size();
+            }else {
+                sum += oi.getItemPrice();
+            }
+        }
+        return sum;
+    }
 }

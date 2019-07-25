@@ -86,6 +86,10 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
                 builder.setNeutralButton(R.string.text_payforall, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        SessionActivity.ordersController.getNameItems()
+                                .get(position).setDonate(SessionActivity.ordersController.getFullPrice());
+                        ((EditText) view).setText(String.valueOf(SessionActivity.ordersController.getFullPrice()));
+                        notifyDataSetChanged();
                         dialogInterface.dismiss();
                     }
                 });
