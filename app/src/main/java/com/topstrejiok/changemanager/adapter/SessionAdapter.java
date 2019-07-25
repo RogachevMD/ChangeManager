@@ -26,8 +26,8 @@ import static com.topstrejiok.changemanager.activity.MainActivity.sessionControl
 
 public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionVH> {
 
-    private Context context;
     SharedPreferences mPrefs;
+    private Context context;
 
     public SessionAdapter(Context context) {
         this.context = context;
@@ -52,7 +52,7 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, SessionActivity.class);
-                intent.putExtra("kekshrek",sessionController.getSessionItem().get(position).getId().toString());
+                intent.putExtra("kekshrek", sessionController.getSessionItem().get(position).getId().toString());
                 context.startActivity(intent);
             }
         });
@@ -120,7 +120,14 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
         return sessionController.getSessionItem().size();
     }
 
-    static class SessionVH extends RecyclerView.ViewHolder {
+    private void saveData() {
+        mPrefs = context.getSharedPreferences("ASSA", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = gson.toJson(sessionController);
+        mPrefs.edit().putString(KEY_SESSIONS, json).apply();
+    }
+
+    public static class SessionVH extends RecyclerView.ViewHolder {
 
         TextView header;
         TextView dateTime;
@@ -135,14 +142,6 @@ public class SessionAdapter extends RecyclerView.Adapter<SessionAdapter.SessionV
             dateTime = v.findViewById(R.id.dateTime);
             delete = v.findViewById(R.id.delete);
             edit = v.findViewById(R.id.edit);
-
         }
-    }
-
-    private void saveData() {
-        mPrefs = context.getSharedPreferences("ASSA",MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = gson.toJson(sessionController);
-        mPrefs.edit().putString(KEY_SESSIONS, json).apply();
     }
 }

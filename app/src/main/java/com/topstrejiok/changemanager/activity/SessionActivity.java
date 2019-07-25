@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -12,26 +11,20 @@ import android.widget.FrameLayout;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.topstrejiok.changemanager.Controller.OrdersController;
 import com.topstrejiok.changemanager.R;
+import com.topstrejiok.changemanager.controller.OrdersController;
 import com.topstrejiok.changemanager.fragment.ChangeFragment;
 import com.topstrejiok.changemanager.fragment.GroupFragment;
 import com.topstrejiok.changemanager.fragment.OrdersFragment;
+import com.topstrejiok.changemanager.fragment.ReceiptFragment;
 
 public class SessionActivity extends AppCompatActivity {
 
     public static OrdersController ordersController = new OrdersController();
-
-
-    final Fragment fragmentOrder = new OrdersFragment();
-    final Fragment fragmentGroup = new GroupFragment();
-    final Fragment fragmentChange = new ChangeFragment();
     final FragmentManager fm = getSupportFragmentManager();
-    Fragment active = fragmentOrder;
-    private BottomNavigationView navigationView;
     private FrameLayout fragmentContainer;
     private SharedPreferences sharedPreferences;
-    private String mainKey;
+    public static String mainKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +41,8 @@ public class SessionActivity extends AppCompatActivity {
 
     private void init() {
         ordersController = loadData();
-        navigationView = findViewById(R.id.bottomnavbar);
+        BottomNavigationView navigationView = findViewById(R.id.bottomnavbar);
         fragmentContainer = findViewById(R.id.fragmentcontainer);
-    /*    fm.beginTransaction().add(fragmentContainer.getId(), fragmentChange, "3")
-                .hide(fragmentChange).commit();
-        fm.beginTransaction().add(fragmentContainer.getId(), fragmentGroup, "2")
-                .hide(fragmentGroup).commit();*/
         fm.beginTransaction().add(fragmentContainer.getId(), new OrdersFragment(), "1")
                 .commit();
         setTitle(R.string.text_orders);
@@ -78,16 +67,19 @@ public class SessionActivity extends AppCompatActivity {
                                 fm.beginTransaction().add(fragmentContainer.getId(), new ChangeFragment(), "3")
                                         .commit();
                                 return true;
+                            case R.id.action_photo:
+                                setTitle(R.string.text_receipt);
+                                fm.beginTransaction().add(fragmentContainer.getId(),new ReceiptFragment(),"4")
+                                        .commit();
+                                return true;
                         }
                         return false;
                     }
                 });
-        //ordersController.getNameItems().add(new NameItem("Пенис"));
-        //ordersController.getNameItems().add(new NameItem("Детров"));
     }
 
     private void saveData() {
-        mainKey = getIntent().getExtras().getString("kekshrek");
+        mainKey = getIntent().getStringExtra("kekshrek");
         sharedPreferences = getSharedPreferences(mainKey, MODE_PRIVATE);
         Gson gson = new Gson();
         String json = gson.toJson(ordersController);

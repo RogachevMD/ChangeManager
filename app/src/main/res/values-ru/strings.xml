@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="text_orders">Заказы</string>
     <string name="text_group">Группа</string>
+    <string name="text_receipt">Чек</string>
     <string name="text_cancel">Отмена</string>
     <string name="text_ok">ОК</string>
     <string name="text_add_session">Добавить сессию</string>
@@ -25,5 +26,6 @@
     <string name="text_change">Сдача</string>
     <string name="text_need">Не хватает</string>
     <string name="text_sessions">Сессии</string>
+    <string name="text_payforall">Заплатил за всех</string>
 
 </resources>

@@ -1,9 +1,9 @@
-package com.topstrejiok.changemanager.Controller;
+package com.topstrejiok.changemanager.controller;
 
 import android.util.Log;
 
-import com.topstrejiok.changemanager.Libs.Group;
-import com.topstrejiok.changemanager.Libs.Person;
+import com.topstrejiok.changemanager.libs.Group;
+import com.topstrejiok.changemanager.libs.Person;
 import com.topstrejiok.changemanager.model.NameItem;
 import com.topstrejiok.changemanager.model.OrderItem;
 

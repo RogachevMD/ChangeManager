@@ -1,4 +1,4 @@
-package com.topstrejiok.changemanager.Libs;
+package com.topstrejiok.changemanager.libs;
 
 public class OwnBuilder {
 

@@ -1,4 +1,4 @@
-package com.topstrejiok.changemanager.Controller;
+package com.topstrejiok.changemanager.controller;
 
 import com.topstrejiok.changemanager.model.SessionListItem;
 

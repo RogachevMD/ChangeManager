@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">ChangeManager</string>
+
+    <string name="app_name" translatable="false">ChangeManager</string>
 
     <string name="text_orders">Orders</string>
     <string name="text_group">Group</string>
+    <string name="text_receipt">Receipt</string>
     <string name="text_cancel">Cancel</string>
     <string name="text_ok">OK</string>
     <string name="text_add_session">Add Session</string>
@@ -26,10 +28,11 @@
     <string name="text_change">Change</string>
     <string name="text_need">Need</string>
     <string name="text_sessions">Sessions</string>
+    <string name="text_payforall">Рaid for all</string>
 
-
+<!--
     <string name="fragment_order">fragment_order</string>
     <string name="fragment_group">fragment_group</string>
     <string name="fragment_change">fragment_change</string>
-
+-->
 </resources>

@@ -72,6 +72,12 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
                         dialogInterface.cancel();
                     }
                 });
+                builder.setNeutralButton(R.string.text_payforall, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
                 builder.setView(edt);
                 AlertDialog alert = builder.create();
                 alert.show();

@@ -6,7 +6,7 @@
         android:enabled="true"
         android:icon="@drawable/ic_shopping_cart"
         android:title="@string/text_orders"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_group"
         android:enabled="true"
@@ -18,6 +18,12 @@
         android:enabled="true"
         android:icon="@drawable/ic_money"
         android:title="@string/text_change"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_photo"
+        android:enabled="true"
+        android:icon="@drawable/ic_receipt"
+        android:title="@string/text_receipt"
+        app:showAsAction="ifRoom"/>
 
 </menu>

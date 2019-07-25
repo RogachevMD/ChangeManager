@@ -1,6 +1,7 @@
 package com.topstrejiok.changemanager.model;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SessionListItem {
     private Long id;
@@ -10,8 +11,9 @@ public class SessionListItem {
     public SessionListItem(String name, Long id) {
         this.name = name;
         this.id = id;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MMMM/yyyy\nHH:mm");
-        this.dateTime = simpleDateFormat.format(id);
+        /*SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MMMM/yyyy\nHH:mm");
+        this.dateTime = simpleDateFormat.format(id);*/
+        this.dateTime = new SimpleDateFormat("dd/MMMM/yyyy\nHH:mm").format(new Date());
     }
 
     public Long getId() {

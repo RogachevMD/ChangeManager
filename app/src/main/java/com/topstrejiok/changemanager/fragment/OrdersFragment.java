@@ -76,7 +76,6 @@ public class OrdersFragment extends Fragment {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //FIXME еще говна
                 final View v = getLayoutInflater().inflate(R.layout.alert_item_orders, null);
                 final LinearLayout cbgroup = v.findViewById(R.id.checkboxgroup);
                 final EditText ordername = v.findViewById(R.id.edtname);

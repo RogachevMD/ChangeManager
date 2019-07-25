@@ -13,9 +13,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.topstrejiok.changemanager.Controller.SessionController;
 import com.topstrejiok.changemanager.R;
 import com.topstrejiok.changemanager.adapter.SessionAdapter;
+import com.topstrejiok.changemanager.controller.SessionController;
 import com.topstrejiok.changemanager.model.SessionListItem;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,11 +23,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String KEY_SESSIONS = "KEY_SESSIONS";
 
     SharedPreferences mPrefs;
-
     private RecyclerView SessionRecyclerView;
     private SessionAdapter sessionAdapter ;
     private FloatingActionButton addSessionButton;
-    //private ArrayList<SessionListItem> data = new ArrayList<>();
     public static SessionController sessionController;
 
     @Override
@@ -48,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle(R.string.text_add_session);
                 final View view = getLayoutInflater().inflate(R.layout.alert_item_session, null);
-
                 builder.setPositiveButton(R.string.text_add, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -79,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     private void initRecyclerView() {
         SessionRecyclerView = findViewById(R.id.SessionView);
         SessionRecyclerView.setHasFixedSize(true);
@@ -88,15 +84,12 @@ public class MainActivity extends AppCompatActivity {
         SessionRecyclerView.setAdapter(sessionAdapter);
     }
 
-    //FIXME говна
     private void saveData() {
         mPrefs = getSharedPreferences("ASSA",MODE_PRIVATE);
         Gson gson = new Gson();
         String json = gson.toJson(sessionController);
         mPrefs.edit().putString(KEY_SESSIONS, json).apply();
     }
-
-    
 
     private SessionController loadData() {
         mPrefs = getSharedPreferences("ASSA",MODE_PRIVATE);

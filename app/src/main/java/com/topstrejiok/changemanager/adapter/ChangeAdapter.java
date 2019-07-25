@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.topstrejiok.changemanager.Libs.Group;
+import com.topstrejiok.changemanager.libs.Group;
 import com.topstrejiok.changemanager.R;
 
 public class ChangeAdapter extends RecyclerView.Adapter<ChangeAdapter.ChangeVH> {
